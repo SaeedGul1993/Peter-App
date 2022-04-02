@@ -258,7 +258,7 @@ export default class CreateGoalScreen extends Component {
       onBackdropPress={() => this.setState({modal: false})}
       isVisible={this.state.modal}
       //isVisible={true}
-      backdropOpacity={0.6}>
+    >
       <View
         style={{
           marginHorizontal: 20,
@@ -315,15 +315,28 @@ export default class CreateGoalScreen extends Component {
     } = this.state;
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
-        <View style={{marginHorizontal: 20, marginVertical: 20}}>
+        <View style={{marginVertical: 20}}>
           <View>
             <View
               style={{
                 flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'space-between',
+                paddingHorizontal: 20,
               }}>
-              <TouchableOpacity activeOpacity={0.5} onPress={this.back}>
+              <TouchableOpacity
+                style={{
+                  borderRadius: 14,
+                  elevation: 2,
+                  backgroundColor: 'white',
+                  width: 39,
+                  height: 39,
+                  padding: 10,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+                activeOpacity={0.5}
+                onPress={this.back}>
                 <Image source={require('../../commons/images/back.png')} />
               </TouchableOpacity>
               <Text style={{fontSize: 18, color: '#10275A'}}>
@@ -340,7 +353,6 @@ export default class CreateGoalScreen extends Component {
                 marginVertical: 10,
               }}
             />
-
             <ScrollView
               showsVerticalScrollIndicator={false}
               style={{marginBottom: 80}}>
@@ -353,6 +365,7 @@ export default class CreateGoalScreen extends Component {
                   borderRadius: 15,
                   paddingHorizontal: 20,
                   marginVertical: 10,
+                  marginHorizontal: 20,
                 }}>
                 <View
                   style={{
@@ -401,6 +414,7 @@ export default class CreateGoalScreen extends Component {
                     flexDirection: 'row',
                     alignItems: 'center',
                     justifyContent: 'space-between',
+                    marginHorizontal: 20,
                   }}>
                   <Text style={styles.heading}>Calendar</Text>
                   <View
@@ -420,7 +434,7 @@ export default class CreateGoalScreen extends Component {
                   </View>
                 </View>
 
-                <View style={{flex: 1}}>
+                <View style={{flex: 1, marginHorizontal: 20}}>
                   <CalendarStrip
                     daySelectionAnimation={{
                       type: 'border',
@@ -466,7 +480,9 @@ export default class CreateGoalScreen extends Component {
                 </View>
               </View>
 
-              <Text style={styles.heading}>My Timers</Text>
+              <Text style={[styles.heading, {paddingHorizontal: 20}]}>
+                My Timers
+              </Text>
 
               <TouchableOpacity
                 onPress={() => this.props.navigation.navigate('PomoDoroTimer')}
@@ -528,7 +544,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     flexDirection: 'row',
     alignItems: 'center',
-    marginHorizontal: 10,
+    marginHorizontal: 20,
     padding: 10,
   },
   input: {

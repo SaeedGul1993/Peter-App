@@ -43,24 +43,40 @@ export default class PomodoroMeter extends Component {
 
   stopTimer = () => {
     this.setState({
-      timer: 60,
-      play: false,
+      play: !this.state.play,
     });
+  };
+
+  _resetTheTimer = () => {
+    this.setState({timer: 0, play: false});
   };
 
   render() {
     const {play, count, timer} = this.state;
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
-        <View style={{marginHorizontal: 20, marginVertical: 20}}>
+        <View style={{marginVertical: 20}}>
           <View>
             <View
               style={{
                 flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'space-between',
+                paddingHorizontal: 20,
               }}>
-              <TouchableOpacity activeOpacity={0.5} onPress={this.back}>
+              <TouchableOpacity
+                style={{
+                  borderRadius: 14,
+                  elevation: 2,
+                  backgroundColor: 'white',
+                  width: 39,
+                  height: 39,
+                  padding: 10,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+                activeOpacity={0.5}
+                onPress={this.back}>
                 <Image source={require('../../commons/images/back.png')} />
               </TouchableOpacity>
               <Text style={{fontSize: 18, color: '#10275A'}}>
@@ -77,12 +93,13 @@ export default class PomodoroMeter extends Component {
                 marginVertical: 10,
               }}
             />
-            <View style={{alignItems: 'center', marginTop: 50}}>
+            <View style={{alignItems: 'center', marginTop: 60}}>
               <CountdownCircleTimer
                 trailColor={'#7197FE'}
                 trailStrokeWidth={3}
                 strokeWidth={3}
                 isPlaying={play}
+                on
                 duration={timer}
                 colors={[
                   ['#d3d3d3', 0.4],
@@ -127,27 +144,39 @@ export default class PomodoroMeter extends Component {
                 style={{
                   flexDirection: 'row',
                   alignItems: 'center',
-                  marginVertical: 20,
+                  marginVertical: 70,
                 }}>
-                <TouchableOpacity>
-                  <Image source={Images.shuffle} />
+                <TouchableOpacity onPress={this._resetTheTimer}>
+                  <Image
+                    style={styles.play}
+                    source={require('../../commons/images/Icon24.png')}
+                  />
                 </TouchableOpacity>
 
                 {play == true ? (
                   <TouchableOpacity
                     activeOpacity={0.5}
                     onPress={this._pausechange}>
-                    <Image style={styles.play} source={Images.pause} />
+                    <Image
+                      style={styles.play}
+                      source={require('../../commons/images/Icon.png')}
+                    />
                   </TouchableOpacity>
                 ) : (
                   <TouchableOpacity
                     activeOpacity={0.5}
                     onPress={this._playchange}>
-                    <Image style={styles.play} source={Images.play} />
+                    <Image
+                      style={styles.play}
+                      source={require('../../commons/images/Icon23.png')}
+                    />
                   </TouchableOpacity>
                 )}
                 <TouchableOpacity onPress={() => this.stopTimer()}>
-                  <Image source={Images.shop} />
+                  <Image
+                    style={styles.play}
+                    source={require('../../commons/images/Icon25.png')}
+                  />
                 </TouchableOpacity>
               </View>
             </View>
