@@ -170,7 +170,7 @@ export default class CreateGoalScreen extends Component {
               <View
                 style={{
                   borderRadius: 14,
-                  elevation: 2,
+                  elevation: 3,
                   backgroundColor: 'white',
                   width: 45,
                   height: 45,
