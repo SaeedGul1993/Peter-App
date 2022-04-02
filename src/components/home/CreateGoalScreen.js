@@ -174,7 +174,7 @@ export default class CreateGoalScreen extends Component {
                   backgroundColor: 'white',
                   width: 45,
                   height: 45,
-                  padding: 10,
+                  padding: 12,
                   justifyContent: 'center',
                   alignItems: 'center',
                 }}>
