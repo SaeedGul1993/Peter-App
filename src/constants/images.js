@@ -1,0 +1,21 @@
+export default {
+  blueRectangele: require('../commons/images/membership/blueRect.png'),
+  bluePolygon: require('../commons/images/membership/bluePolygon.png'),
+  blueRect: require('../commons/images/membership/blueRect.png'),
+  purpleRect: require('../commons/images/membership/purpleRect.png'),
+  purplePolygon: require('../commons/images/membership/purplePolygon.png'),
+  purpleBack: require('../commons/images/membership/purpleBack.png'),
+  blueBack: require('../commons/images/membership/blueBack.png'),
+  cvv: require('../commons/images/membership/cvv.png'),
+  calender: require('../commons/images/membership/calender.png'),
+  master: require('../commons/images/membership/master.png'),
+  allCards: require('../commons/images/membership/allCards.png'),
+  tick1: require('../commons/images/tick1.png'),
+  back: require('../commons/images/back.png'),
+
+  shuffle: require('../commons/images/shuffle.png'),
+  play: require('../commons/images/play.png'),
+  shop: require('../commons/images/shop.png'),
+  pause: require('../commons/images/pause.png'),
+  Rectangle: require('../commons/images/Rectangle.png'),
+};
