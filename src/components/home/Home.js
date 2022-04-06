@@ -167,103 +167,113 @@ export default class Home extends Component {
 
                   {this.state.myTodyTodos?.map(item => {
                     return (
-                      <View
-                        style={{
-                          minHeight: 90,
-                          width: 180,
-                          borderRadius: 10,
-                          backgroundColor:
-                            item?.is_completed === true ? 'white' : '#648CFF',
-                          padding: 10,
-                          elevation: 3,
-                          marginRight: 10,
-                        }}>
+                      <TouchableOpacity
+                        onPress={() =>
+                          this.props.navigation.navigate('ViewTodo', {
+                            isEdit: true,
+                            item,
+                          })
+                        }>
                         <View
                           style={{
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            justifyContent: 'space-between',
+                            minHeight: 90,
+                            width: 180,
+                            borderRadius: 10,
+                            backgroundColor:
+                              item?.is_completed === true ? 'white' : '#648CFF',
+                            padding: 10,
+                            elevation: 3,
+                            marginRight: 10,
                           }}>
+                          <View
+                            style={{
+                              flexDirection: 'row',
+                              alignItems: 'center',
+                              justifyContent: 'space-between',
+                            }}>
+                            <Text
+                              style={{
+                                fontSize: 10,
+                                color:
+                                  item?.is_completed === true
+                                    ? 'black'
+                                    : 'white',
+                              }}>
+                              {moment(item?.reminder_time, [
+                                'hh:mm[:ss[.uuuuuu]]',
+                              ]).format('hh:mm A')}
+                            </Text>
+                            {item?.is_completed === true ? (
+                              <Image
+                                source={require('../../commons/images/tick.png')}
+                                resizeMode="contain"
+                              />
+                            ) : (
+                              <CustomMaterialMenu
+                                menutext="Show Menu"
+                                menustyle={{
+                                  marginTop: -10,
+                                }}
+                                navigation={this.props.navigation}
+                                route={this.props.route}
+                                isIcon={true}
+                                iconName="dots-horizontal"
+                                color="white"
+                              />
+                            )}
+                          </View>
                           <Text
                             style={{
-                              fontSize: 10,
+                              fontSize: 12,
+                              fontWeight: 'bold',
                               color:
                                 item?.is_completed === true ? 'black' : 'white',
                             }}>
-                            {moment(item?.reminder_time, [
-                              'hh:mm[:ss[.uuuuuu]]',
-                            ]).format('hh:mm A')}
+                            {item?.name}
                           </Text>
-                          {item?.is_completed === true ? (
-                            <Image
-                              source={require('../../commons/images/tick.png')}
-                              resizeMode="contain"
-                            />
-                          ) : (
-                            <CustomMaterialMenu
-                              menutext="Show Menu"
-                              menustyle={{
-                                marginTop: -10,
-                              }}
-                              navigation={this.props.navigation}
-                              route={this.props.route}
-                              isIcon={true}
-                              iconName="dots-horizontal"
-                              color="white"
-                            />
-                          )}
-                        </View>
-                        <Text
-                          style={{
-                            fontSize: 12,
-                            fontWeight: 'bold',
-                            color:
-                              item?.is_completed === true ? 'black' : 'white',
-                          }}>
-                          {item?.name}
-                        </Text>
-                        <Text
-                          style={{
-                            fontSize: 12,
-                            fontWeight: 'bold',
-                            color:
-                              item?.is_completed === true ? 'black' : 'white',
-                          }}>
-                          {item?.description}
-                        </Text>
-                        <View
-                          style={{
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            justifyContent: 'space-between',
-                            marginTop: 10,
-                          }}>
-                          <TouchableOpacity
-                            onPress={() =>
-                              this.setState({
-                                modalVisibleLogout: true,
-                              })
-                            }>
-                            <Image
-                              source={require('../../commons/images/person.png')}
-                            />
-                          </TouchableOpacity>
-
+                          <Text
+                            style={{
+                              fontSize: 12,
+                              fontWeight: 'bold',
+                              color:
+                                item?.is_completed === true ? 'black' : 'white',
+                            }}>
+                            {item?.description}
+                          </Text>
                           <View
                             style={{
-                              backgroundColor: '#E7F1F8',
-                              height: 20,
-                              width: 45,
+                              flexDirection: 'row',
                               alignItems: 'center',
-                              justifyContent: 'center',
-                              borderRadius: 5,
+                              justifyContent: 'space-between',
+                              marginTop: 10,
                             }}>
-                            <Text style={{color: '#648CFF', fontSize: 10}}>
-                              Urgent
-                            </Text>
+                            <TouchableOpacity
+                              onPress={() =>
+                                this.setState({
+                                  modalVisibleLogout: true,
+                                })
+                              }>
+                              <Image
+                                source={require('../../commons/images/person.png')}
+                              />
+                            </TouchableOpacity>
+
+                            <View
+                              style={{
+                                backgroundColor: '#E7F1F8',
+                                height: 20,
+                                width: 45,
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                borderRadius: 5,
+                              }}>
+                              <Text style={{color: '#648CFF', fontSize: 10}}>
+                                Urgent
+                              </Text>
+                            </View>
                           </View>
                         </View>
-                      </View>
+                      </TouchableOpacity>
                     );
                   })}
                 </View>

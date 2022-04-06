@@ -148,6 +148,7 @@ import PurchaseMembership from './src/components/home/PurchaseMembership';
 import PomoDoroTimer from './src/components/home/MyPomodoroMeter';
 import CreatePomoDoroMeter from './src/components/home/PomoDoroTimer';
 import AddFriendsChallenges from './src/components/home/AddFriendsChallenges';
+import ViewTodoDetailScreen from './src/components/home/ViewTodoDetail';
 
 const Stack = createStackNavigator();
 // const Drawer = createDrawerNavigator();
@@ -424,6 +425,13 @@ const SettingScreenStack = ({navigation}) => {
       <Stack.Screen
         name="CreatePomoDoroMeter"
         component={CreatePomoDoroMeter}
+        options={{
+          headerShown: false,
+        }}
+      />
+       <Stack.Screen
+        name="ViewTodo"
+        component={ViewTodoDetailScreen}
         options={{
           headerShown: false,
         }}

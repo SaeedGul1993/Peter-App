@@ -23,6 +23,7 @@ export default class PomodoroMeter extends Component {
     count: 0,
     timer: 62,
     modal: true,
+    key: 0,
 
     // timer: 50
   };
@@ -48,7 +49,7 @@ export default class PomodoroMeter extends Component {
   };
 
   _resetTheTimer = () => {
-    this.setState({timer: 0, play: false});
+    this.setState(prevstate => ({key: prevstate.key + 1, play: false}));
   };
 
   render() {
@@ -95,12 +96,16 @@ export default class PomodoroMeter extends Component {
             />
             <View style={{alignItems: 'center', marginTop: 60}}>
               <CountdownCircleTimer
+                key={this.state.key}
                 trailColor={'#7197FE'}
+                size={250}
                 trailStrokeWidth={3}
                 strokeWidth={3}
                 isPlaying={play}
-                on
                 duration={timer}
+                onUpdate={e => {
+                  console.log('onUpdate', e);
+                }}
                 colors={[
                   ['#d3d3d3', 0.4],
                   ['#d3d3d3', 0.4],

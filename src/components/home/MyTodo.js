@@ -260,113 +260,120 @@ export default class CreateGoalScreen extends Component {
 
   renderTodosItem = item => {
     return (
-      <View
-        style={{
-          backgroundColor: '#F9FAFD',
-          borderRadius: 15,
-          marginVertical: 10,
-        }}>
+      <TouchableOpacity
+        onPress={() =>
+          this.props.navigation.navigate('ViewTodo', {isEdit: true, item})
+        }>
         <View
           style={{
-            flexDirection: 'row',
-            alignItems: 'flex-start',
-            marginHorizontal: 10,
-            marginVertical: 20,
-          }}>
-          <Text
-            style={{
-              width: 2.5,
-              height: 50,
-              backgroundColor: '#648CFF',
-            }}
-          />
-          <View style={{width: '100%'}}>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'flex-start',
-                justifyContent: 'space-between',
-                marginLeft: 10,
-              }}>
-              <Text style={{fontSize: 16, color: '#2C406E'}}>{item.name}</Text>
-              <CustomMaterialMenu
-                menustyle={{}}
-                resetTodo={() => {
-                  this.props.navigation?.navigate('AddTodo', {
-                    isEdit: true,
-                    item,
-                  });
-                }}
-                doneTodo={() => {
-                  this._doneTheTodo(item);
-                }}
-                menuHide={this.state.menuHide}
-                navigation={this.props.navigation}
-                route={this.props.route}
-                isIcon={true}
-                iconName="dots-vertical"
-                color="#2C406E"
-              />
-            </View>
-            <Text
-              style={{
-                fontSize: 11,
-                color: '#10275A',
-                marginLeft: 10,
-              }}>
-              {item.description}
-            </Text>
-          </View>
-        </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between',
+            backgroundColor: '#F9FAFD',
+            borderRadius: 15,
             marginVertical: 10,
-            marginHorizontal: 20,
           }}>
           <View
             style={{
               flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
+              alignItems: 'flex-start',
+              marginHorizontal: 10,
+              marginVertical: 20,
             }}>
-            <View
+            <Text
               style={{
-                height: 25,
-                width: 50,
-                borderRadius: 5,
-                backgroundColor: '#648CFF20',
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginLeft: 0,
-              }}>
-              <Text style={{fontSize: 11, color: '#648CFF'}}>Urgent</Text>
-            </View>
-            <View
-              style={{
-                height: 25,
-                width: 50,
-                borderRadius: 5,
-                backgroundColor: '#648CFF20',
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginLeft: 10,
-              }}>
-              <Text style={{fontSize: 11, color: '#648CFF'}}>Home</Text>
+                width: 2.5,
+                height: 50,
+                backgroundColor: '#648CFF',
+              }}
+            />
+            <View style={{width: '100%'}}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'flex-start',
+                  justifyContent: 'space-between',
+                  marginLeft: 10,
+                }}>
+                <Text style={{fontSize: 16, color: '#2C406E'}}>
+                  {item.name}
+                </Text>
+                <CustomMaterialMenu
+                  menustyle={{}}
+                  resetTodo={() => {
+                    this.props.navigation?.navigate('AddTodo', {
+                      isEdit: true,
+                      item,
+                    });
+                  }}
+                  doneTodo={() => {
+                    this._doneTheTodo(item);
+                  }}
+                  menuHide={this.state.menuHide}
+                  navigation={this.props.navigation}
+                  route={this.props.route}
+                  isIcon={true}
+                  iconName="dots-vertical"
+                  color="#2C406E"
+                />
+              </View>
+              <Text
+                style={{
+                  fontSize: 11,
+                  color: '#10275A',
+                  marginLeft: 10,
+                }}>
+                {item.description}
+              </Text>
             </View>
           </View>
-          <Text
+          <View
             style={{
-              marginLeft: 20,
-              color: '#9AA8C7',
-              fontSize: 14,
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              marginVertical: 10,
+              marginHorizontal: 20,
             }}>
-            {moment(item.created_at).format('LT')}
-          </Text>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <View
+                style={{
+                  height: 25,
+                  width: 50,
+                  borderRadius: 5,
+                  backgroundColor: '#648CFF20',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginLeft: 0,
+                }}>
+                <Text style={{fontSize: 11, color: '#648CFF'}}>Urgent</Text>
+              </View>
+              <View
+                style={{
+                  height: 25,
+                  width: 50,
+                  borderRadius: 5,
+                  backgroundColor: '#648CFF20',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginLeft: 10,
+                }}>
+                <Text style={{fontSize: 11, color: '#648CFF'}}>Home</Text>
+              </View>
+            </View>
+            <Text
+              style={{
+                marginLeft: 20,
+                color: '#9AA8C7',
+                fontSize: 14,
+              }}>
+              {moment(item.created_at).format('LT')}
+            </Text>
+          </View>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   };
 

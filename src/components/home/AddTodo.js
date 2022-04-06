@@ -33,7 +33,7 @@ export default class CreateGoalScreen extends Component {
       description: '',
       newtag: '',
       reminder: false,
-      date: moment().format('YYYY-MM-DD'),
+      date: moment().format('MM-DD-YYYY'),
       time1: '',
       time2: '',
       time1hours: 0,
@@ -47,7 +47,7 @@ export default class CreateGoalScreen extends Component {
       modalVisible2: false,
       token: null,
       emoji: [],
-      selectedEmoji: '',
+      selectedEmoji: null,
       tags: [],
       access_token: '',
       selectedId: '',
@@ -113,7 +113,7 @@ export default class CreateGoalScreen extends Component {
     })
       .then(response => response.json())
       .then(responseJson => {
-        console.log('emoji response', responseJson?.results);
+        console.log('emoji response', responseJson);
         this.setState({emoji: responseJson.results});
       })
       .catch(err => {
@@ -206,9 +206,11 @@ export default class CreateGoalScreen extends Component {
     const body = JSON.stringify({
       name: this.state.title,
       description: this.state.description,
-      due_date: this.state.date,
+      due_date: moment(this.state.date,['MM-DD-YYYY']).format('YYYY-MM-DD'),
       emoji: this.state.selectedEmoji,
-      // tags: this.state.tags,
+      tags: this.state.tags?.map(item => {
+        return item?.id;
+      }),
       reminder_time: this.state.reminderTime,
     });
     console.log('body of add todo', body);
@@ -453,7 +455,7 @@ export default class CreateGoalScreen extends Component {
                     date={date}
                     mode="date"
                     placeholder={date}
-                    format="YYYY-MM-DD"
+                    format="MM-DD-YYYY"
                     confirmBtnText="Confirm"
                     cancelBtnText="Cancel"
                     customStyles={{

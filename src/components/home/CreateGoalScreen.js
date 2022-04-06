@@ -43,7 +43,7 @@ export default class CreateGoalScreen extends Component {
     })
       .then(response => response.json())
       .then(responseJson => {
-        console.log('response times of my todo', responseJson?.results);
+        console.log('response times of my todo', responseJson);
         this.setState({
           myTodos: responseJson?.results,
           loading: false,
