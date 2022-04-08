@@ -13,6 +13,7 @@ import {
   StyleSheet,
   FlatList,
   ActivityIndicator,
+  Dimensions,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon1 from 'react-native-vector-icons/Entypo';
@@ -26,6 +27,7 @@ import moment from 'moment';
 import AsyncStorage from '@react-native-community/async-storage';
 import CalendarStrip from 'react-native-calendar-strip';
 import Images from '../../constants/images';
+import {SwipeListView} from 'react-native-swipe-list-view';
 
 export default class CreateGoalScreen extends Component {
   state = {
@@ -33,7 +35,7 @@ export default class CreateGoalScreen extends Component {
     description: '',
     newtag: '',
     reminder: false,
-    date: '',
+    date: moment().format('YYYY-MM-DD'),
     time1: '',
     time2: '',
     time1hours: 0,
@@ -48,6 +50,14 @@ export default class CreateGoalScreen extends Component {
     access_token: '',
     loading: true,
     modal: false,
+    myTimers: [],
+    timerTitle: '',
+    completedTimers: [],
+    modal2: false,
+    selectedIndex: null,
+    edit: false,
+    searchTimerByName: '',
+    searchByTime: '',
   };
 
   async componentDidMount() {
@@ -137,6 +147,90 @@ export default class CreateGoalScreen extends Component {
     }, 1000);
   };
 
+  _addTimer = () => {
+    this.setState(prevState => ({
+      myTimers: [
+        {
+          title: this.state.timerTitle,
+          created_at: moment().format('DD MMMM'),
+          completed: false,
+        },
+        ...prevState.myTimers,
+      ],
+      modal: false,
+    }));
+  };
+  _searchPomodoroTimerByNameAndTime = search => {
+    return records => {
+      let searchValue = `${records?.title}${records?.created_at}`;
+      return (
+        searchValue.toLowerCase().includes(search.toLowerCase()) || !search
+      );
+    };
+  };
+
+  _timerAddInCompleted = () => {
+    const {selectedIndex} = this.state;
+    console.log('selectedIndex', selectedIndex);
+    let mappedOut = this.state.myTimers?.map((item, index) => {
+      if (index === selectedIndex) {
+        return {
+          ...item,
+          completed: true,
+        };
+      } else {
+        return item;
+      }
+    });
+    let filteredOutForCompletedTimer = mappedOut?.filter(
+      item => item?.completed === true,
+    );
+    let filteredOutForInCompletedTimer = mappedOut?.filter(
+      item => item?.completed === false,
+    );
+    this.setState(prevState => ({
+      myTimers: [...filteredOutForInCompletedTimer],
+      completedTimers: [
+        ...prevState?.completedTimers,
+        ...filteredOutForCompletedTimer,
+      ],
+      modal2: false,
+    }));
+  };
+
+  _editTimer = () => {
+    let mappedOut = this.state.myTimers?.map((item, index) => {
+      if (index === this.state.selectedIndex) {
+        return {
+          title: this.state.timerTitle,
+          created_at: moment().format('DD MMMM'),
+          completed: false,
+        };
+      } else {
+        return item;
+      }
+    });
+    this.setState({
+      myTimers: mappedOut,
+      modal: false,
+      edit: false,
+    });
+  };
+
+  _deleteTimer = selectedIndex => {
+    this.state.myTimers?.splice(selectedIndex, 1);
+    this.setState({myTimers: this.state.myTimers});
+  };
+
+  _editModal = (title, index) => {
+    this.setState({
+      timerTitle: title,
+      selectedIndex: index,
+      modal: true,
+      edit: true,
+    });
+  };
+
   _today = val => {
     if (val == true) {
       this.setState({today: true});
@@ -146,7 +240,82 @@ export default class CreateGoalScreen extends Component {
   };
 
   clearText = () => {
-    this._titleinput.clear();
+    this.setState({
+      searchTimerByName: '',
+    });
+  };
+
+  renderMyTimers = timer => {
+    return (
+      <SwipeListView
+        rightOpenValue={-Dimensions.get('window').width / 2}
+        data={timer}
+        renderItem={(data, rowMap) => (
+          console.log('data', data),
+          (
+            <View style={styles.tile}>
+              <TouchableOpacity
+                onPress={() => {
+                  this.setState({modal2: true, selectedIndex: data?.index});
+                }}>
+                <Image
+                  style={styles.checkboxx}
+                  source={
+                    data?.item?.completed ? Images.checkedBox : Images.Rectangle
+                  }
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() =>
+                  data?.item?.completed === false
+                    ? this.props.navigation.navigate('PomoDoroTimer')
+                    : () => {}
+                }
+                style={{width: '95%'}}>
+                <View style={{paddingHorizontal: 10}}>
+                  <Text
+                    style={{
+                      fontSize: 14,
+                      color: 'black',
+                    }}>
+                    {data?.item?.title}
+                  </Text>
+                  <Text
+                    style={{
+                      color: '#9AA8C7',
+                      fontSize: 14,
+                    }}>
+                    {data?.item?.created_at}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          )
+        )}
+        renderHiddenItem={(data, rowMap) =>
+          data?.item?.completed !== true && (
+            <View style={styles.tileRightSide}>
+              <TouchableOpacity
+                style={{marginLeft: 15}}
+                onPress={() => this._editModal(data?.item?.title, data?.index)}>
+                <Image source={Images.editIcon} resizeMode="center" />
+                <Text style={{fontSize: 12}}>Title</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={{marginLeft: 15}} onPress={() => {}}>
+                <Image source={Images.rotateIcon} resizeMode="center" />
+                <Text style={{fontSize: 12}}>Reset</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{marginLeft: 15}}
+                onPress={() => this._deleteTimer(data?.index)}>
+                <Image source={Images.deleteIcon} resizeMode="center" />
+                <Text style={{fontSize: 12}}>Delete</Text>
+              </TouchableOpacity>
+            </View>
+          )
+        }
+      />
+    );
   };
 
   renderTodosItem = item => {
@@ -253,7 +422,7 @@ export default class CreateGoalScreen extends Component {
 
   subscribedPlan = () => (
     <Modal
-      backdropOpacity={1}
+      backdropOpacity={0.7}
       backdropTransitionOutTiming={0}
       onBackdropPress={() => this.setState({modal: false})}
       isVisible={this.state.modal}
@@ -270,27 +439,70 @@ export default class CreateGoalScreen extends Component {
           style={{
             marginVertical: 35,
           }}>
-          <Text style={styles.addPomo}>Add Pomodoro Title</Text>
-          <TextInput placeholder="Gaming on laptop" style={styles.input} />
+          {this.state.edit ? (
+            <Text style={styles.addPomo}>Edit Pomodoro Title</Text>
+          ) : (
+            <Text style={styles.addPomo}>Add Pomodoro Title</Text>
+          )}
+          <TextInput
+            value={this.state.timerTitle}
+            onChangeText={txt => this.setState({timerTitle: txt})}
+            placeholder="Gaming on laptop"
+            style={styles.input}
+          />
 
           <View style={styles.row}>
             <TouchableOpacity
-              onPress={() =>
-                this.setState({
-                  modal: false,
-                })
-              }
+              onPress={() => this.setState({modal: false})}
               style={styles.btn}>
               <Text style={styles.text}>Cancel</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() =>
-                this.setState({
-                  modal: false,
-                })
+                this.state.edit ? this._editTimer() : this._addTimer()
               }
               style={styles.btn1}>
               <Text style={styles.text1}>Save</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
+    </Modal>
+  );
+
+  _completedTimerModal = () => (
+    <Modal
+      backdropOpacity={0.7}
+      backdropTransitionOutTiming={0}
+      onBackdropPress={() => this.setState({modal2: false})}
+      isVisible={this.state.modal2}
+      //isVisible={true}
+    >
+      <View
+        style={{
+          marginHorizontal: 20,
+          justifyContent: 'center',
+          backgroundColor: 'white',
+          borderRadius: 15,
+        }}>
+        <View
+          style={{
+            marginVertical: 35,
+          }}>
+          <Text style={styles.addPomo}>Timer</Text>
+          <Text style={{textAlign: 'center', marginTop: 10}}>
+            Are you sure to Complete this timer ?
+          </Text>
+          <View style={styles.row}>
+            <TouchableOpacity
+              onPress={() => this.setState({modal2: false})}
+              style={styles.btn}>
+              <Text style={styles.text}>Cancel</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => this._timerAddInCompleted()}
+              style={styles.btn1}>
+              <Text style={styles.text1}>Sure</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -313,6 +525,7 @@ export default class CreateGoalScreen extends Component {
       modalVisible2,
       today,
     } = this.state;
+    console.log('myTimers', this.state.myTimers);
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
         <View style={{marginVertical: 20}}>
@@ -355,7 +568,8 @@ export default class CreateGoalScreen extends Component {
             />
             <ScrollView
               showsVerticalScrollIndicator={false}
-              style={{marginBottom: 80}}>
+              nestedScrollEnabled={true}
+              style={{marginBottom: 120,flexGrow:1}}>
               <View
                 style={{
                   flexDirection: 'row',
@@ -375,14 +589,17 @@ export default class CreateGoalScreen extends Component {
                   }}>
                   <Icon name="search" size={20} color="#BEC4D0" />
                   <TextInput
-                    placeholder="Search for task"
+                    placeholder="Search for Timer"
                     style={{
                       color: '#10275A',
                       fontSize: 14,
                       marginLeft: 0,
                       width: '88%',
                     }}
-                    onChangeText={title => this.setState({title})}
+                    value={this.state.searchTimerByName}
+                    onChangeText={txt =>
+                      this.setState({searchTimerByName: txt})
+                    }
                     placeholderTextColor="#C8CDD9"
                     autoCapitalize="sentences"
                     ref={ref => {
@@ -429,13 +646,14 @@ export default class CreateGoalScreen extends Component {
                       style={{marginRight: 8}}
                     />
                     <Text style={{fontSize: 12, color: '#525F77'}}>
-                      August 2021
+                      {moment().format('MMMM YYYY')}
                     </Text>
                   </View>
                 </View>
 
                 <View style={{flex: 1, marginHorizontal: 20}}>
                   <CalendarStrip
+                    selectedDate={this.state.date}
                     daySelectionAnimation={{
                       type: 'border',
                       duration: 100,
@@ -484,27 +702,30 @@ export default class CreateGoalScreen extends Component {
                 My Timers
               </Text>
 
-              <TouchableOpacity
-                onPress={() => this.props.navigation.navigate('PomoDoroTimer')}
-                style={styles.tile}>
-                <Image style={styles.checkboxx} source={Images.Rectangle} />
-                <View style={{paddingHorizontal: 10}}>
-                  <Text
-                    style={{
-                      fontSize: 14,
-                      color: 'black',
-                    }}>
-                    Swimming 5 times round
-                  </Text>
-                  <Text
-                    style={{
-                      color: '#9AA8C7',
-                      fontSize: 14,
-                    }}>
-                    14 August
-                  </Text>
-                </View>
-              </TouchableOpacity>
+              {this.state.myTimers?.length ? (
+                this.renderMyTimers(
+                  this.state.myTimers?.filter(
+                    this._searchPomodoroTimerByNameAndTime(
+                      this.state.searchTimerByName,
+                    ),
+                  ),
+                )
+              ) : (
+                <Text style={{textAlign: 'center'}}>No Timer Create </Text>
+              )}
+              {this.subscribedPlan()}
+              {this._completedTimerModal()}
+
+              <Text style={[styles.heading, {paddingHorizontal: 20}]}>
+                Completed Timers
+              </Text>
+              {this.state.completedTimers?.length ? (
+                this.renderMyTimers(this.state.completedTimers)
+              ) : (
+                <Text style={{textAlign: 'center'}}>
+                  No completed timer yet
+                </Text>
+              )}
             </ScrollView>
           </View>
         </View>
@@ -515,7 +736,6 @@ export default class CreateGoalScreen extends Component {
           onPress={this._addSelf}>
           <Icon2 name="pluscircle" color="#648CFF" size={45} />
         </TouchableOpacity>
-        {this.subscribedPlan()}
       </SafeAreaView>
     );
   }
@@ -546,6 +766,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginHorizontal: 20,
     padding: 10,
+  },
+  tileRightSide: {
+    backgroundColor: '#ffff',
+    borderRadius: 10,
+    marginVertical: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    marginHorizontal: 20,
+    padding: 10,
+    zIndex: 10000,
   },
   input: {
     backgroundColor: '#F6F6F6',

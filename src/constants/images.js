@@ -18,4 +18,8 @@ export default {
   shop: require('../commons/images/shop.png'),
   pause: require('../commons/images/pause.png'),
   Rectangle: require('../commons/images/Rectangle.png'),
+  checkedBox: require('../commons/images/Group680.png'),
+  deleteIcon: require('../commons/images/trash-2.png'),
+  editIcon: require('../commons/images/edit-3.png'),
+  rotateIcon: require('../commons/images/rotate-ccw.png'),
 };
