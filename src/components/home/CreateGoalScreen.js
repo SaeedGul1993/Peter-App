@@ -497,7 +497,7 @@ export default class CreateGoalScreen extends Component {
                 </Text>
                 <TouchableOpacity
                   activeOpacity={0.5}
-                  onPress={this._myFriendsChallenges}
+                  onPress={this._mySelfChallenges}
                   style={{
                     width: '70%',
                     backgroundColor: '#E77D7D',

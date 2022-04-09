@@ -832,7 +832,7 @@ export default class CreateGoalScreen extends Component {
                     }}>
                     <TouchableOpacity
                       activeOpacity={0.5}
-                      onPress={this._goGoogleFacebook}>
+                      onPress={()=>this.props.navigation.navigate('InviteFriendToGoogle')}>
                       <Image
                         source={require('../../commons/images/google.png')}
                       />
@@ -840,7 +840,7 @@ export default class CreateGoalScreen extends Component {
                     <Text style={{fontSize: 14, color: '#8A8BB3'}}>or</Text>
                     <TouchableOpacity
                       activeOpacity={0.5}
-                      onPress={this._goGoogleFacebook}>
+                      onPress={()=>this.props.navigation.navigate('InviteFriendToGoogle')}>
                       <Image
                         source={require('../../commons/images/facebook-6.png')}
                         resizeMode="center"
