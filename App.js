@@ -1,118 +1,5 @@
-// /**
-//  * Sample React Native App
-//  * https://github.com/facebook/react-native
-//  *
-//  * @format
-//  * @flow strict-local
-//  */
-
-// import React from 'react';
-// import type {Node} from 'react';
-// import {
-//   SafeAreaView,
-//   ScrollView,
-//   StatusBar,
-//   StyleSheet,
-//   Text,
-//   useColorScheme,
-//   View,
-// } from 'react-native';
-
-// import {
-//   Colors,
-//   DebugInstructions,
-//   Header,
-//   LearnMoreLinks,
-//   ReloadInstructions,
-// } from 'react-native/Libraries/NewAppScreen';
-
-// const Section = ({children, title}): Node => {
-//   const isDarkMode = useColorScheme() === 'dark';
-//   return (
-//     <View style={styles.sectionContainer}>
-//       <Text
-//         style={[
-//           styles.sectionTitle,
-//           {
-//             color: isDarkMode ? Colors.white : Colors.black,
-//           },
-//         ]}>
-//         {title}
-//       </Text>
-//       <Text
-//         style={[
-//           styles.sectionDescription,
-//           {
-//             color: isDarkMode ? Colors.light : Colors.dark,
-//           },
-//         ]}>
-//         {children}
-//       </Text>
-//     </View>
-//   );
-// };
-
-// const App: () => Node = () => {
-//   const isDarkMode = useColorScheme() === 'dark';
-
-//   const backgroundStyle = {
-//     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-//   };
-
-//   return (
-//     <SafeAreaView style={backgroundStyle}>
-//       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-//       <ScrollView
-//         contentInsetAdjustmentBehavior="automatic"
-//         style={backgroundStyle}>
-//         <Header />
-//         <View
-//           style={{
-//             backgroundColor: isDarkMode ? Colors.black : Colors.white,
-//           }}>
-//           <Section title="Step One">
-//             Edit <Text style={styles.highlight}>App.js</Text> to change this
-//             screen and then come back to see your edits.
-//           </Section>
-//           <Section title="See Your Changes">
-//             <ReloadInstructions />
-//           </Section>
-//           <Section title="Debug">
-//             <DebugInstructions />
-//           </Section>
-//           <Section title="Learn More">
-//             Read the docs to discover what to do next:
-//           </Section>
-//           <LearnMoreLinks />
-//         </View>
-//       </ScrollView>
-//     </SafeAreaView>
-//   );
-// };
-
-// const styles = StyleSheet.create({
-//   sectionContainer: {
-//     marginTop: 32,
-//     paddingHorizontal: 24,
-//   },
-//   sectionTitle: {
-//     fontSize: 24,
-//     fontWeight: '600',
-//   },
-//   sectionDescription: {
-//     marginTop: 8,
-//     fontSize: 18,
-//     fontWeight: '400',
-//   },
-//   highlight: {
-//     fontWeight: '700',
-//   },
-// });
-
-// export default App;
-
 import 'react-native-gesture-handler';
-import * as React from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, TouchableOpacity, Image, Text, StyleSheet} from 'react-native';
 
 import {
@@ -150,6 +37,8 @@ import CreatePomoDoroMeter from './src/components/home/PomoDoroTimer';
 import AddFriendsChallenges from './src/components/home/AddFriendsChallenges';
 import ViewTodoDetailScreen from './src/components/home/ViewTodoDetail';
 import InviteFriendFromGoogle from './src/components/home/InviteFriendFromGoogle';
+import CustomNotificationModal from './src/commons/custom/customNotificationModal';
+import messaging from '@react-native-firebase/messaging';
 
 const Stack = createStackNavigator();
 // const Drawer = createDrawerNavigator();
@@ -284,235 +173,209 @@ const BottomTabs = () => {
   );
 };
 
-const SettingScreenStack = ({navigation}) => {
+const SettingScreenStack = ({
+  navigation,
+  notificationModal,
+  setNotificationModal,
+}) => {
   return (
-    <Stack.Navigator
-      // initialRouteName="AddTodo"
-      // initialRouteName="MyTodo"
-      initialRouteName="SplashScreen"
-      // screenOptions={{
-      //   headerLeft: () => (
-      //     <NavigationDrawerStructure navigationProps={navigation} />
-      //   ),
-      //   headerStyle: {
-      //     backgroundColor: '#f4511e', //Set Header color
-      //   },
-      //   headerTintColor: '#fff', //Set Header text color
-      //   headerTitleStyle: {
-      //     fontWeight: 'bold', //Set Header text style
-      //   },
-      // }}
-    >
-      <Stack.Screen
-        name="SplashScreen"
-        component={SplashScreen}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="SliderScreen1"
-        component={SliderScreen1}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="SliderScreen2"
-        component={SliderScreen2}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="SliderScreen3"
-        component={SliderScreen3}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="LoginScreen"
-        component={LoginScreen}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="Home"
-        component={Home}
-        // component={BottomTabs}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="CreateGoalScreen"
-        component={CreateGoalScreen}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="UserProfile"
-        component={UserProfile}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="AddTodo"
-        component={AddTodo}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="AddFriendsChallenges"
-        component={AddFriendsChallenges}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="MyTodo"
-        component={MyTodo}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="AddSelfChallenges"
-        component={AddSelfChallenges}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="Setting"
-        component={Setting}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="MySelfChallenges"
-        component={MySelfChallenges}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="MyMemberShip"
-        component={MyMemberShip}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="PurchaseMembership"
-        component={PurchaseMembership}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="PomoDoroTimer"
-        component={PomoDoroTimer}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="CreatePomoDoroMeter"
-        component={CreatePomoDoroMeter}
-        options={{
-          headerShown: false,
-        }}
-      />
-       <Stack.Screen
-        name="ViewTodo"
-        component={ViewTodoDetailScreen}
-        options={{
-          headerShown: false,
-        }}
-      />
-       <Stack.Screen
-        name="InviteFriendToGoogle"
-        component={InviteFriendFromGoogle}
-        options={{
-          headerShown: false,
-        }}
-      />
-    </Stack.Navigator>
+    <>
+      <Stack.Navigator
+        // initialRouteName="AddTodo"
+        // initialRouteName="MyTodo"
+        initialRouteName="SplashScreen"
+        // screenOptions={{
+        //   headerLeft: () => (
+        //     <NavigationDrawerStructure navigationProps={navigation} />
+        //   ),
+        //   headerStyle: {
+        //     backgroundColor: '#f4511e', //Set Header color
+        //   },
+        //   headerTintColor: '#fff', //Set Header text color
+        //   headerTitleStyle: {
+        //     fontWeight: 'bold', //Set Header text style
+        //   },
+        // }}
+      >
+        <Stack.Screen
+          name="SplashScreen"
+          component={SplashScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="SliderScreen1"
+          component={SliderScreen1}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="SliderScreen2"
+          component={SliderScreen2}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="SliderScreen3"
+          component={SliderScreen3}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="LoginScreen"
+          component={LoginScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          // component={BottomTabs}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="CreateGoalScreen"
+          component={CreateGoalScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="UserProfile"
+          component={UserProfile}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="AddTodo"
+          component={AddTodo}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="AddFriendsChallenges"
+          component={AddFriendsChallenges}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="MyTodo"
+          component={MyTodo}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="AddSelfChallenges"
+          component={AddSelfChallenges}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Setting"
+          component={Setting}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="MySelfChallenges"
+          component={MySelfChallenges}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="MyMemberShip"
+          component={MyMemberShip}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="PurchaseMembership"
+          component={PurchaseMembership}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="PomoDoroTimer"
+          component={PomoDoroTimer}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="CreatePomoDoroMeter"
+          component={CreatePomoDoroMeter}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="ViewTodo"
+          component={ViewTodoDetailScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="InviteFriendToGoogle"
+          component={InviteFriendFromGoogle}
+          options={{
+            headerShown: false,
+          }}
+        />
+      </Stack.Navigator>
+    </>
   );
 };
 
 const App = () => {
+  const [notificationModal, setNotificationModal] = useState(false);
+  useEffect(() => {
+    foregroundNotification();
+    backgroundNotification();
+  }, []);
+  const foregroundNotification = () => {
+    messaging().onMessage(async remoteMessage => {
+      // alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
+      setNotificationModal(true);
+    });
+  };
+  const backgroundNotification = () => {
+    messaging().setBackgroundMessageHandler(async remoteMessage => {
+      console.log('Message handled in the background!', remoteMessage);
+    });
+  };
+
   return (
     <NavigationContainer>
-      <SettingScreenStack />
-      {/* <Drawer.Navigator
-        drawerContentOptions={{
-          activeTintColor: '#e91e63',
-          itemStyle: {marginVertical: 5},
-        }}>
-        <Drawer.Screen
-          name="HomeScreenStack"
-          options={{drawerLabel: 'Home Screen Option'}}
-          component={HomeScreenStack}
-        />
-        <Drawer.Screen
-          name="SettingScreenStack"
-          options={{drawerLabel: 'Setting Screen Option'}}
-          component={SettingScreenStack}
-        />
-      </Drawer.Navigator> */}
+      <CustomNotificationModal
+        open={notificationModal}
+        closeModal={() => setNotificationModal(false)}
+      />
+      <SettingScreenStack
+        notificationModal={notificationModal}
+        setNotificationModal={setNotificationModal}
+      />
     </NavigationContainer>
   );
 };
 
 export default App;
-
-class Projects extends React.Component {
-  render() {
-    return (
-      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        <Text>Projects</Text>
-      </View>
-    );
-  }
-}
-
-class Search extends React.Component {
-  render() {
-    return (
-      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        <Text>Search</Text>
-      </View>
-    );
-  }
-}
-
-class Favourite extends React.Component {
-  render() {
-    return (
-      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        <Text>Favourite</Text>
-      </View>
-    );
-  }
-}
-
-class Profile extends React.Component {
-  render() {
-    return (
-      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        <Text>Profile</Text>
-      </View>
-    );
-  }
-}
 
 const styles = StyleSheet.create({
   shadow: {

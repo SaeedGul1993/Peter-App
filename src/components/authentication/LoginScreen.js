@@ -18,6 +18,7 @@ import {
   GoogleSignin,
   statusCodes,
 } from '@react-native-google-signin/google-signin';
+
 export default class LoginScreen extends Component {
   constructor(props) {
     super(props);
@@ -32,6 +33,7 @@ export default class LoginScreen extends Component {
 
   async componentDidMount() {
     GoogleSignin.configure({});
+    this.checkToken();
     //this.signOut()
     if (GoogleSignin.isSignedIn()) {
       console.log('yes sign in');
@@ -74,6 +76,7 @@ export default class LoginScreen extends Component {
         .then(response => response.json())
         .then(responseJson => {
           console.log('response', responseJson);
+          // this.checkToken();
           this.props.navigation.navigate('Home');
           AsyncStorage.setItem(
             'login',
@@ -99,7 +102,12 @@ export default class LoginScreen extends Component {
       }
     }
   };
-
+  async checkToken() {
+    const fcmToken = await messaging().getToken();
+    if (fcmToken) {
+      console.log(fcmToken, 'fcmToken');
+    }
+  }
   signOut = async () => {
     try {
       await GoogleSignin.revokeAccess();
