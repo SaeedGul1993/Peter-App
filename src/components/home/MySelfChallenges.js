@@ -416,7 +416,7 @@ export default class MySelfChallenges extends Component {
           activeOpacity={0.8}
           style={styles.absolute}
           onPress={this._addSelf}>
-          <Icon2 name="pluscircle" color="#648CFF" size={45} />
+          <Image source={require('../../commons/images/Group6880.png')} />
         </TouchableOpacity>
       </SafeAreaView>
     );

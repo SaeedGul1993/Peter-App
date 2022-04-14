@@ -5,6 +5,7 @@ import {View, Text, Image, TouchableOpacity} from 'react-native';
 import Menu, {MenuItem, MenuDivider} from 'react-native-material-menu';
 //import menu and menu item
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon33 from 'react-native-vector-icons/Ionicons';
 
 const CustomMaterialMenu = props => {
   // console.log('props',props)
@@ -18,6 +19,7 @@ const CustomMaterialMenu = props => {
   return (
     <View style={props.menustyle}>
       <Menu
+        style={{marginTop: 50}}
         ref={ref => (_menu = ref)}
         button={
           props.isIcon ? (
@@ -29,12 +31,15 @@ const CustomMaterialMenu = props => {
                 }}
                 style={{width: 30, height: 30}}
               /> */}
-              <Icon name={props.iconName} size={25} color={props.color} />
+              <Icon name={props.iconName} size={15} color={props.color} />
             </TouchableOpacity>
           ) : (
-            <Text onPress={() => _menu.show()} style={props.textStyle}>
-              {props.menutext}
-            </Text>
+            <TouchableOpacity onPress={() => _menu.show()}>
+              <Image
+                source={require('../../commons/images/emoji.png')}
+                style={{alignSelf: 'center', marginTop: 10}}
+              />
+            </TouchableOpacity>
           )
         }>
         {props.route.name === 'FirstPage' ? (
@@ -55,32 +60,65 @@ const CustomMaterialMenu = props => {
             Go to first Page
           </MenuItem>
         ) : null}
-        {props.route.name === 'CreateGoalScreen' ? (
+        {props.route.name === 'CreateGoalScreen' ||
+        props.route.name === 'Home' ? (
           <>
             <MenuItem
               onPress={() => {
                 props.navigation.navigate('UserProfile');
                 _menu.hide();
               }}>
-              My Profile
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-around',
+                  alignItems: 'center',
+                }}>
+                <Icon33 name="ios-person-outline" color="#363853" size={20} />
+                <Text style={{marginLeft: 5}}> My Profile</Text>
+              </View>
             </MenuItem>
             <MenuItem
+              style={{justifyContent: 'center', height: 20}}
               onPress={() => {
                 props.navigation.navigate('Setting');
                 _menu.hide();
               }}>
-              Setting
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-around',
+                  alignItems: 'center',
+                }}>
+                <Image
+                  source={require('../../commons/images/Setting.png')}
+                  resizeMode="center"
+                />
+                <Text style={{marginLeft: 5}}> Setting</Text>
+              </View>
             </MenuItem>
             <MenuItem
+              style={{justifyContent: 'center'}}
               onPress={() => {
                 _call();
                 _menu.hide();
               }}>
-              Log Out
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-around',
+                  alignItems: 'center',
+                }}>
+                <Image
+                  source={require('../../commons/images/Logout.png')}
+                  resizeMode="center"
+                />
+                <Text style={{marginLeft: 5}}> logout</Text>
+              </View>
             </MenuItem>
           </>
         ) : null}
-        {props.route.name === 'Home' || props.route.name === 'MyTodo' ? (
+        {props.route.name === 'MyTodo' ? (
           <>
             <MenuItem
               onPress={() => {

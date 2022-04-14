@@ -156,33 +156,23 @@ export default class CreateGoalScreen extends Component {
                   }}>
                   <Icon name="ios-person-outline" color="#363853" size={25} />
                 </View>
-                <Text
-                  style={{
-                    fontSize: 20,
-                    fontWeight: '600',
-                    color: '#10275A',
-                    alignSelf: 'center',
-                    marginVertical: 10,
-                  }}>
-                  {this.state.username}
-                </Text>
               </View>
               <View
                 style={{
                   borderRadius: 14,
-                  elevation: 3,
+                  elevation: 2,
                   backgroundColor: 'white',
-                  width: 45,
-                  height: 45,
+                  width: 48,
+                  height: 48,
                   padding: 12,
                   justifyContent: 'center',
                   alignItems: 'center',
                 }}>
                 <View
                   style={{
-                    height: 30,
-                    width: 30,
-                    borderRadius: 10,
+                    height: 19,
+                    width: 19,
+                    borderRadius: 7,
                     borderWidth: 1,
                     borderColor: '#10275A',
                     alignItems: 'center',
@@ -190,10 +180,10 @@ export default class CreateGoalScreen extends Component {
                     color: '#10275A',
                   }}>
                   <CustomMaterialMenu
-                    menustyle={{}}
                     navigation={this.props.navigation}
                     route={this.props.route}
                     isIcon={true}
+                    icon={true}
                     iconName="dots-horizontal"
                     color="black"
                     callLogout={this._callLogout}
@@ -273,9 +263,18 @@ export default class CreateGoalScreen extends Component {
                 </View>
               </Modal>
             </View>
-
-            {/* <Text style={{fontSize:20,fontWeight:'600',color:'#10275A',alignSelf:'center',marginVertical:10}}>Peter Song</Text> */}
-            <View style={{marginVertical: 10}}>
+            <Text
+              style={{
+                fontSize: 20,
+                fontWeight: '600',
+                color: '#10275A',
+                alignSelf: 'center',
+                paddingVertical: 30,
+                fontWeight: 'bold',
+              }}>
+              {this.state.username}
+            </Text>
+            <View style={{marginBottom: 15}}>
               <Text
                 style={{
                   fontSize: 30,
@@ -306,18 +305,19 @@ export default class CreateGoalScreen extends Component {
               }}>
               <View
                 style={{
-                  height: 160,
-                  width: 150,
-                  borderRadius: 20,
+                  height: 138,
+                  width: 138,
+                  borderRadius: 14,
                   alignItems: 'center',
                   justifyContent: 'center',
                   backgroundColor: '#F1E3FF',
+                  paddingTop: 15,
                 }}>
                 <View
                   style={{
-                    height: 65,
-                    width: 65,
-                    borderRadius: 20,
+                    height: 48,
+                    width: 48,
+                    borderRadius: 14,
                     alignItems: 'center',
                     justifyContent: 'center',
                     backgroundColor: '#BE82FF',
@@ -326,18 +326,18 @@ export default class CreateGoalScreen extends Component {
                     activeOpacity={0.5}
                     onPress={this._addTodo}
                     style={{
-                      height: 30,
-                      width: 30,
-                      borderRadius: 10,
+                      height: 20,
+                      width: 20,
+                      borderRadius: 8,
                       borderWidth: 2,
                       alignItems: 'center',
                       justifyContent: 'center',
                       borderColor: 'white',
                     }}>
-                    <Icon1 name="plus" size={25} color="white" />
+                    <Icon1 name="plus" size={12} color="white" />
                   </TouchableOpacity>
                 </View>
-                <Text style={{fontSize: 14, color: '#10275A', marginTop: 10}}>
+                <Text style={{fontSize: 14, color: '#10275A', marginTop: 5}}>
                   Todo
                 </Text>
                 <TouchableOpacity
@@ -346,24 +346,25 @@ export default class CreateGoalScreen extends Component {
                   style={{
                     width: '70%',
                     backgroundColor: '#BE82FF',
-                    height: 25,
+                    height: 20,
                     borderRadius: 30,
                     justifyContent: 'center',
-                    marginTop: 20,
+                    marginTop: 15,
+                    marginBottom: 10,
                   }}>
                   <View
                     style={{
                       flexDirection: 'row',
                       alignItems: 'center',
-                      justifyContent: 'center',
+                      justifyContent: 'space-around',
                     }}>
                     <Text
-                      style={{fontSize: 10, color: 'white', marginLeft: 25}}>
+                      style={{fontSize: 10, color: 'white', marginLeft: 10}}>
                       {this.state?.myTodos?.length}Todo
                     </Text>
                     <Icon2
                       name="arrowright"
-                      size={20}
+                      size={12}
                       color="white"
                       style={{marginLeft: 15}}
                     />
@@ -372,18 +373,19 @@ export default class CreateGoalScreen extends Component {
               </View>
               <View
                 style={{
-                  height: 160,
-                  width: 150,
-                  borderRadius: 20,
+                  height: 138,
+                  width: 138,
+                  borderRadius: 14,
                   alignItems: 'center',
                   justifyContent: 'center',
                   backgroundColor: '#fdf9d1',
+                  paddingTop: 15,
                 }}>
                 <View
                   style={{
-                    height: 65,
-                    width: 65,
-                    borderRadius: 20,
+                    height: 48,
+                    width: 48,
+                    borderRadius: 14,
                     alignItems: 'center',
                     justifyContent: 'center',
                     backgroundColor: '#F8E62F',
@@ -392,15 +394,15 @@ export default class CreateGoalScreen extends Component {
                     activeOpacity={0.5}
                     onPress={this._pomodoroMeter}
                     style={{
-                      height: 30,
-                      width: 30,
-                      borderRadius: 10,
+                      height: 20,
+                      width: 20,
+                      borderRadius: 8,
                       borderWidth: 2,
                       alignItems: 'center',
                       justifyContent: 'center',
                       borderColor: 'white',
                     }}>
-                    <Icon1 name="plus" size={25} color="white" />
+                    <Icon1 name="plus" size={12} color="white" />
                   </TouchableOpacity>
                 </View>
                 <Text style={{fontSize: 14, color: '#10275A', marginTop: 10}}>
@@ -410,24 +412,25 @@ export default class CreateGoalScreen extends Component {
                   style={{
                     width: '70%',
                     backgroundColor: '#F8E62F',
-                    height: 25,
+                    height: 20,
                     borderRadius: 30,
                     justifyContent: 'center',
-                    marginTop: 20,
+                    marginTop: 15,
+                    marginBottom: 10,
                   }}>
                   <View
                     style={{
                       flexDirection: 'row',
                       alignItems: 'center',
-                      justifyContent: 'center',
+                      justifyContent: 'space-around',
                     }}>
                     <Text
-                      style={{fontSize: 10, color: '#303030', marginLeft: 20}}>
+                      style={{fontSize: 10, color: '#303030', marginLeft: 10}}>
                       6 Created
                     </Text>
                     <Icon2
                       name="arrowright"
-                      size={20}
+                      size={12}
                       color="#303030"
                       style={{marginLeft: 5}}
                     />
@@ -445,43 +448,64 @@ export default class CreateGoalScreen extends Component {
               }}>
               <View
                 style={{
-                  height: 180,
-                  width: 150,
-                  borderRadius: 20,
+                  height: 165,
+                  width: 138,
+                  borderRadius: 14,
                   alignItems: 'center',
                   justifyContent: 'center',
                   backgroundColor: '#FFE4E4',
                 }}>
-                <Text style={{fontSize: 12, marginVertical: 5}}>Points: 5</Text>
                 <View
                   style={{
-                    height: 65,
-                    width: 65,
-                    borderRadius: 20,
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginTop: 5,
+                  }}>
+                  <Text
+                    style={{
+                      fontSize: 12,
+
+                      marginRight: 3,
+                      color: '#8A8BB3',
+                    }}>
+                    Points:
+                  </Text>
+                  <Text
+                    style={{fontSize: 14, marginVertical: 5, color: 'black'}}>
+                    5
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    height: 48,
+                    width: 48,
+                    borderRadius: 14,
                     alignItems: 'center',
                     justifyContent: 'center',
                     backgroundColor: '#E77D7D',
+                    marginTop: 5,
                   }}>
                   <TouchableOpacity
                     activeOpacity={0.5}
                     onPress={this._addFriendsChallenges}
                     style={{
-                      height: 30,
-                      width: 30,
-                      borderRadius: 10,
+                      height: 20,
+                      width: 20,
+                      borderRadius: 8,
                       borderWidth: 2,
                       alignItems: 'center',
                       justifyContent: 'center',
                       borderColor: 'white',
                     }}>
-                    <Icon1 name="plus" size={25} color="white" />
+                    <Icon1 name="plus" size={12} color="white" />
                   </TouchableOpacity>
                 </View>
                 <Text
                   style={{
                     fontSize: 14,
                     color: '#10275A',
-                    marginTop: 10,
+                    marginTop: 5,
                     textAlign: 'center',
                   }}>
                   Challenges with
@@ -501,24 +525,25 @@ export default class CreateGoalScreen extends Component {
                   style={{
                     width: '70%',
                     backgroundColor: '#E77D7D',
-                    height: 25,
+                    height: 20,
                     borderRadius: 30,
                     justifyContent: 'center',
                     marginTop: 5,
+                    marginBottom: 10,
                   }}>
                   <View
                     style={{
                       flexDirection: 'row',
                       alignItems: 'center',
-                      justifyContent: 'center',
+                      justifyContent: 'space-around',
                     }}>
                     <Text
-                      style={{fontSize: 10, color: 'white', marginLeft: 20}}>
+                      style={{fontSize: 10, color: 'white', marginLeft: 10}}>
                       6 Ongoing
                     </Text>
                     <Icon2
                       name="arrowright"
-                      size={20}
+                      size={12}
                       color="white"
                       style={{marginLeft: 5}}
                     />
@@ -527,36 +552,57 @@ export default class CreateGoalScreen extends Component {
               </View>
               <View
                 style={{
-                  height: 180,
-                  width: 150,
-                  borderRadius: 20,
+                  height: 165,
+                  width: 138,
+                  borderRadius: 14,
                   alignItems: 'center',
                   justifyContent: 'center',
                   backgroundColor: '#E7F1F8',
                 }}>
-                <Text style={{fontSize: 12, marginVertical: 5}}>Points: 5</Text>
                 <View
                   style={{
-                    height: 65,
-                    width: 65,
-                    borderRadius: 20,
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginTop: 5,
+                  }}>
+                  <Text
+                    style={{
+                      fontSize: 12,
+
+                      marginRight: 3,
+                      color: '#8A8BB3',
+                    }}>
+                    Points:
+                  </Text>
+                  <Text
+                    style={{fontSize: 14, marginVertical: 5, color: 'black'}}>
+                    5
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    height: 48,
+                    width: 48,
+                    borderRadius: 14,
                     alignItems: 'center',
                     justifyContent: 'center',
                     backgroundColor: '#648CFF',
+                    marginTop: 5,
                   }}>
                   <TouchableOpacity
                     activeOpacity={0.5}
                     onPress={this._addSelfChallenges}
                     style={{
-                      height: 30,
-                      width: 30,
-                      borderRadius: 10,
+                      height: 20,
+                      width: 20,
+                      borderRadius: 8,
                       borderWidth: 2,
                       alignItems: 'center',
                       justifyContent: 'center',
                       borderColor: 'white',
                     }}>
-                    <Icon1 name="plus" size={25} color="white" />
+                    <Icon1 name="plus" size={12} color="white" />
                   </TouchableOpacity>
                 </View>
                 <Text style={{fontSize: 14, color: '#10275A', marginTop: 10}}>
@@ -566,10 +612,11 @@ export default class CreateGoalScreen extends Component {
                   style={{
                     width: '70%',
                     backgroundColor: '#648CFF',
-                    height: 25,
+                    height: 20,
                     borderRadius: 30,
                     justifyContent: 'center',
                     marginTop: 15,
+                    marginBottom: 10,
                   }}>
                   <TouchableOpacity
                     activeOpacity={0.5}
@@ -577,15 +624,15 @@ export default class CreateGoalScreen extends Component {
                     style={{
                       flexDirection: 'row',
                       alignItems: 'center',
-                      justifyContent: 'center',
+                      justifyContent: 'space-around',
                     }}>
                     <Text
-                      style={{fontSize: 10, color: 'white', marginLeft: 20}}>
+                      style={{fontSize: 10, color: 'white', marginLeft: 10}}>
                       3 Ongoing
                     </Text>
                     <Icon2
                       name="arrowright"
-                      size={20}
+                      size={12}
                       color="white"
                       style={{marginLeft: 5}}
                     />

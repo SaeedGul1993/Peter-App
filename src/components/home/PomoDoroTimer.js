@@ -569,7 +569,7 @@ export default class CreateGoalScreen extends Component {
             <ScrollView
               showsVerticalScrollIndicator={false}
               nestedScrollEnabled={true}
-              style={{marginBottom: 120,flexGrow:1}}>
+              style={{marginBottom: 120, flexGrow: 1}}>
               <View
                 style={{
                   flexDirection: 'row',
@@ -734,7 +734,7 @@ export default class CreateGoalScreen extends Component {
           activeOpacity={0.8}
           style={styles.absolute}
           onPress={this._addSelf}>
-          <Icon2 name="pluscircle" color="#648CFF" size={45} />
+          <Image source={require('../../commons/images/Group6880.png')} />
         </TouchableOpacity>
       </SafeAreaView>
     );

@@ -132,11 +132,6 @@ export default class Home extends Component {
                   paddingHorizontal: 20,
                 }}>
                 <TouchableOpacity
-                  onPress={() =>
-                    this.setState({
-                      modalVisibleLogout: true,
-                    })
-                  }
                   style={{
                     borderRadius: 14,
                     elevation: 2,
@@ -147,9 +142,16 @@ export default class Home extends Component {
                     justifyContent: 'center',
                     alignItems: 'center',
                   }}>
-                  <Image
-                    source={require('../../commons/images/emoji.png')}
-                    style={{alignSelf: 'center'}}
+                  <CustomMaterialMenu
+                    menutext="Show Menu"
+                    menustyle={{
+                      marginTop: -10,
+                    }}
+                    navigation={this.props.navigation}
+                    route={this.props.route}
+                    isIcon={false}
+                    iconName="dots-horizontal"
+                    color="white"
                   />
                 </TouchableOpacity>
               </View>
@@ -288,16 +290,17 @@ export default class Home extends Component {
                 style={{
                   width: '70%',
                   alignSelf: 'center',
-                  backgroundColor: '#d3d3d3',
+                  backgroundColor: '#d3d3d350',
                   marginVertical: 10,
-                  borderRadius: 10,
+                  borderRadius: 7,
                 }}>
                 <View
                   style={{
                     flexDirection: 'row',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    height: 40,
+                    height: 32,
+                    paddingVertical: 2,
                   }}>
                   <TouchableOpacity
                     activeOpacity={0.5}
@@ -306,9 +309,9 @@ export default class Home extends Component {
                       alignItems: 'center',
                       justifyContent: 'center',
                       width: selfChallenges ? '49%' : '50%',
-                      height: selfChallenges ? 38 : null,
+                      height: selfChallenges ? 28 : null,
                       backgroundColor: selfChallenges ? 'white' : null,
-                      borderRadius: selfChallenges ? 10 : null,
+                      borderRadius: selfChallenges ? 7 : null,
                     }}>
                     <Text style={{fontSize: 16}}>On Going</Text>
                   </TouchableOpacity>
@@ -319,9 +322,9 @@ export default class Home extends Component {
                       alignItems: 'center',
                       justifyContent: 'center',
                       width: selfChallenges ? '50%' : '49%',
-                      height: selfChallenges ? null : 38,
+                      height: selfChallenges ? null : 28,
                       backgroundColor: selfChallenges ? null : 'white',
-                      borderRadius: selfChallenges ? null : 10,
+                      borderRadius: selfChallenges ? null : 7,
                     }}>
                     <Text style={{fontSize: 16}}>Up Coming</Text>
                   </TouchableOpacity>
@@ -433,16 +436,16 @@ export default class Home extends Component {
                 style={{
                   width: '70%',
                   alignSelf: 'center',
-                  backgroundColor: '#d3d3d3',
+                  backgroundColor: '#d3d3d350',
                   marginVertical: 10,
-                  borderRadius: 10,
+                  borderRadius: 7,
                 }}>
                 <View
                   style={{
                     flexDirection: 'row',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    height: 40,
+                    height: 32,
                   }}>
                   <TouchableOpacity
                     activeOpacity={0.5}
@@ -451,9 +454,9 @@ export default class Home extends Component {
                       alignItems: 'center',
                       justifyContent: 'center',
                       width: challengewithFriend ? '49%' : '50%',
-                      height: challengewithFriend ? 38 : null,
+                      height: challengewithFriend ? 28 : null,
                       backgroundColor: challengewithFriend ? 'white' : null,
-                      borderRadius: challengewithFriend ? 10 : null,
+                      borderRadius: challengewithFriend ? 7 : null,
                     }}>
                     <Text style={{fontSize: 16}}>On Going</Text>
                   </TouchableOpacity>
@@ -464,9 +467,9 @@ export default class Home extends Component {
                       alignItems: 'center',
                       justifyContent: 'center',
                       width: challengewithFriend ? '50%' : '49%',
-                      height: challengewithFriend ? null : 38,
+                      height: challengewithFriend ? null : 28,
                       backgroundColor: challengewithFriend ? null : 'white',
-                      borderRadius: challengewithFriend ? null : 10,
+                      borderRadius: challengewithFriend ? null : 7,
                     }}>
                     <Text style={{fontSize: 16}}>Up Coming</Text>
                   </TouchableOpacity>
@@ -790,7 +793,7 @@ export default class Home extends Component {
               marginTop: 12,
             }}>
             <TouchableOpacity activeOpacity={0.8}>
-              <Image source={require('../../commons/images/stroke2.png')} />
+              <Image source={require('../../commons/images/Home.png')} />
             </TouchableOpacity>
             <TouchableOpacity activeOpacity={0.8} onPress={this._goGoal1}>
               <Image
@@ -798,15 +801,13 @@ export default class Home extends Component {
               />
             </TouchableOpacity>
             <TouchableOpacity activeOpacity={0.8} onPress={this._goGoal}>
-              <IconAnt name="pluscircle" color="#648CFF" size={45} />
+              <Image source={require('../../commons/images/Group6880.png')} />
             </TouchableOpacity>
             <TouchableOpacity activeOpacity={0.8} onPress={this._goGoal1}>
-              <Image
-                source={require('../../commons/images/icons/activity.png')}
-              />
+              <Image source={require('../../commons/images/Group23.png')} />
             </TouchableOpacity>
             <TouchableOpacity activeOpacity={0.8} onPress={this._goGoal2}>
-              <Image source={require('../../commons/images/icons/group.png')} />
+              <Image source={require('../../commons/images/Activity.png')} />
             </TouchableOpacity>
           </View>
         </View>
