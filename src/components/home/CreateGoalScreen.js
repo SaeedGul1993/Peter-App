@@ -184,6 +184,7 @@ export default class CreateGoalScreen extends Component {
                     route={this.props.route}
                     isIcon={true}
                     icon={true}
+                    isTodo={false}
                     iconName="dots-horizontal"
                     color="black"
                     callLogout={this._callLogout}

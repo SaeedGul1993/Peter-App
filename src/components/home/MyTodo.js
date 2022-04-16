@@ -297,6 +297,7 @@ export default class CreateGoalScreen extends Component {
                 </Text>
                 <CustomMaterialMenu
                   menustyle={{}}
+                  isTodo={true}
                   resetTodo={() => {
                     this.props.navigation?.navigate('AddTodo', {
                       isEdit: true,
@@ -378,13 +379,13 @@ export default class CreateGoalScreen extends Component {
   };
 
   render() {
-    // console.log(
-    //   'this.state?.myTodyTodos',
-    //   this.state?.myTodyTodos,
-    //   'this.state.inComingTodos',
-    //   this.state.inComingTodos,
-    //   '',
-    // );
+    console.log(
+      'this.state?.myTodyTodos',
+      this.state?.myTodyTodos,
+      'this.state.inComingTodos',
+      this.state.inComingTodos,
+      '',
+    );
     const {
       reminder,
       date,
@@ -588,26 +589,6 @@ export default class CreateGoalScreen extends Component {
                     iconContainer={{flex: 0.1}}
                   />
                 </View>
-
-                {/* <CalendarPicker
-                  startFromMonday={true}
-                  allowRangeSelection={false}
-                  minDate={new Date(2018, 1, 1)}
-                  maxDate={new Date(2050, 6, 3)}
-                  previousTitle="Previous"
-                  previousTitleStyle={{marginLeft: 10}}
-                  nextTitle="Next"
-                  nextTitleStyle={{marginRight: 10}}
-                  todayBackgroundColor="#648CFF"
-                  selectedDayColor="#648CFF"
-                  selectedDayTextColor="white"
-                  scaleFactor={375}
-                  textStyle={{
-                    fontFamily: 'Cochin',
-                    color: '#000000',
-                  }}
-                /> */}
-
                 <View
                   style={{
                     width: '70%',
@@ -754,6 +735,7 @@ export default class CreateGoalScreen extends Component {
                               navigation={this.props.navigation}
                               route={this.props.route}
                               isIcon={true}
+                              isTodo={true}
                               iconName="dots-vertical"
                               color="#2C406E"
                             />

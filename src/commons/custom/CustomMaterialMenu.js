@@ -19,7 +19,7 @@ const CustomMaterialMenu = props => {
   return (
     <View style={props.menustyle}>
       <Menu
-        style={{marginTop: 50}}
+        style={{marginTop: props.isTodo === true ? 20 : 50, borderRadius: 14}}
         ref={ref => (_menu = ref)}
         button={
           props.isIcon ? (
@@ -60,8 +60,9 @@ const CustomMaterialMenu = props => {
             Go to first Page
           </MenuItem>
         ) : null}
-        {props.route.name === 'CreateGoalScreen' ||
-        props.route.name === 'Home' ? (
+        {(props.route.name === 'CreateGoalScreen' ||
+          props.route.name === 'Home') &&
+        props.isTodo === false ? (
           <>
             <MenuItem
               onPress={() => {
@@ -100,7 +101,7 @@ const CustomMaterialMenu = props => {
             <MenuItem
               style={{justifyContent: 'center'}}
               onPress={() => {
-                _call();
+                props.callLogout();
                 _menu.hide();
               }}>
               <View
@@ -118,20 +119,44 @@ const CustomMaterialMenu = props => {
             </MenuItem>
           </>
         ) : null}
-        {props.route.name === 'MyTodo' ? (
+        {props.route.name === 'MyTodo' || props.isTodo === true ? (
           <>
             <MenuItem
               onPress={() => {
                 _menu.hide();
               }}>
-              Disable
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-around',
+                  alignItems: 'center',
+                }}>
+                <Image
+                  source={require('../../commons/images/CloseSquare.png')}
+                  resizeMode="stretch"
+                  style={{width: 20, height: 20}}
+                />
+                <Text style={{marginLeft: 5}}> Disable</Text>
+              </View>
             </MenuItem>
             {/* <MenuItem disabled>Disabled option</MenuItem> */}
             <MenuItem
               onPress={() => {
                 props.resetTodo();
               }}>
-              Reset
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-around',
+                  alignItems: 'center',
+                }}>
+                <Image
+                  source={require('../../commons/images/EditSquare.png')}
+                  resizeMode="stretch"
+                  style={{width: 20, height: 20}}
+                />
+                <Text style={{marginLeft: 5}}> Reset</Text>
+              </View>
             </MenuItem>
             {/* <MenuDivider /> */}
             <MenuItem
@@ -139,7 +164,19 @@ const CustomMaterialMenu = props => {
                 props.doneTodo();
                 _menu.hide();
               }}>
-              Done
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-around',
+                  alignItems: 'center',
+                }}>
+                <Image
+                  source={require('../../commons/images/DeleteSquare.png')}
+                  resizeMode="stretch"
+                  style={{width: 20, height: 20}}
+                />
+                <Text style={{marginLeft: 5}}> Done</Text>
+              </View>
             </MenuItem>
           </>
         ) : null}

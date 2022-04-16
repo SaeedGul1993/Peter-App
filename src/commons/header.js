@@ -20,11 +20,21 @@ const header = ({header}) => {
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'space-between',
-          height: 60,
           marginHorizontal: 20,
+          paddingVertical: 10,
         }}>
         <TouchableOpacity
           activeOpacity={0.5}
+          style={{
+            borderRadius: 14,
+            elevation: 2,
+            backgroundColor: 'white',
+            width: 39,
+            height: 39,
+            padding: 10,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
           onPress={() => navigation.goBack()}>
           <Image source={Images.back} />
         </TouchableOpacity>
@@ -38,7 +48,7 @@ const header = ({header}) => {
           width: '100%',
           height: 1,
           backgroundColor: '#d3d3d3',
-          marginVertical: 10,
+          marginBottom: 10,
         }}
       />
     </SafeAreaView>

@@ -39,6 +39,8 @@ import ViewTodoDetailScreen from './src/components/home/ViewTodoDetail';
 import InviteFriendFromGoogle from './src/components/home/InviteFriendFromGoogle';
 import CustomNotificationModal from './src/commons/custom/customNotificationModal';
 import messaging from '@react-native-firebase/messaging';
+import MyOfferNotification from './src/components/home/MyOffer&Notification';
+import MyInvitation from './src/components/home/MyInvitation';
 
 const Stack = createStackNavigator();
 // const Drawer = createDrawerNavigator();
@@ -334,6 +336,20 @@ const SettingScreenStack = ({
         <Stack.Screen
           name="InviteFriendToGoogle"
           component={InviteFriendFromGoogle}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="MyOfferAndNotification"
+          component={MyOfferNotification}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="MyInvitations"
+          component={MyInvitation}
           options={{
             headerShown: false,
           }}

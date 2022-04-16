@@ -152,6 +152,8 @@ export default class Home extends Component {
                     isIcon={false}
                     iconName="dots-horizontal"
                     color="white"
+                    isTodo={false}
+                    callLogout={this._callLogout}
                   />
                 </TouchableOpacity>
               </View>
@@ -216,6 +218,7 @@ export default class Home extends Component {
                                 menustyle={{
                                   marginTop: -10,
                                 }}
+                                isTodo={true}
                                 navigation={this.props.navigation}
                                 route={this.props.route}
                                 isIcon={true}
@@ -623,6 +626,7 @@ export default class Home extends Component {
                               isIcon={true}
                               iconName="dots-vertical"
                               color="#2C406E"
+                              isTodo={true}
                             />
                           </View>
                           <Text
@@ -692,94 +696,6 @@ export default class Home extends Component {
                 </Text>
               )}
             </View>
-            {/* <View
-              style={{
-                backgroundColor: '#E5E5E5',
-                borderRadius: 10,
-                marginVertical: 10,
-              }}>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  marginHorizontal: 10,
-                  marginVertical: 15,
-                }}>
-                <Text
-                  style={{
-                    width: 3,
-                    height: 50,
-                    backgroundColor: '#E88B8C',
-                  }}
-                />
-                <View style={{width: '100%'}}>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      marginHorizontal: 20,
-                    }}>
-                    <Text style={{fontSize: 16, color: '#2C406E'}}>
-                      Mobile repair shop
-                    </Text>
-                    <CustomMaterialMenu
-                      menustyle={{}}
-                      navigation={this.props.navigation}
-                      route={this.props.route}
-                      isIcon={true}
-                      iconName="dots-vertical"
-                      color="#2C406E"
-                    />
-                  </View>
-                  <Text
-                    style={{marginLeft: 20, color: '#9AA8C7', fontSize: 14}}>
-                    07:15 - 07:35
-                  </Text>
-                </View>
-              </View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  marginVertical: 10,
-                  marginHorizontal: 20,
-                }}>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}>
-                  <View
-                    style={{
-                      height: 25,
-                      width: 50,
-                      borderRadius: 5,
-                      backgroundColor: '#d3d3d3',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      marginLeft: 10,
-                    }}>
-                    <Text style={{fontSize: 11, color: '#E88B8C'}}>Urgent</Text>
-                  </View>
-                  <View
-                    style={{
-                      height: 25,
-                      width: 50,
-                      borderRadius: 5,
-                      backgroundColor: '#d3d3d3',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      marginLeft: 10,
-                    }}>
-                    <Text style={{fontSize: 11, color: '#E88B8C'}}>Home</Text>
-                  </View>
-                </View>
-                <Text style={{fontSize: 11, color: '#E88B8C'}}>Today</Text>
-              </View>
-            </View> */}
           </View>
         </ScrollView>
 

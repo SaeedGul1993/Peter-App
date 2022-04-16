@@ -206,7 +206,7 @@ export default class CreateGoalScreen extends Component {
     const body = JSON.stringify({
       name: this.state.title,
       description: this.state.description,
-      due_date: moment(this.state.date,['MM-DD-YYYY']).format('YYYY-MM-DD'),
+      due_date: moment(this.state.date, ['MM-DD-YYYY']).format('YYYY-MM-DD'),
       emoji: this.state.selectedEmoji,
       tags: this.state.tags?.map(item => {
         return item?.id;
@@ -448,8 +448,21 @@ export default class CreateGoalScreen extends Component {
                     blurOnSubmit={false}
                   />
                 </View>
-                <View style={{paddingHorizontal: 20}}>
-                  <Text style={{fontSize: 14, color: '#8A8BB3'}}>Date</Text>
+                <Text
+                  style={{
+                    fontSize: 14,
+                    color: '#8A8BB3',
+                    paddingHorizontal: 20,
+                  }}>
+                  Date
+                </Text>
+                <View
+                  style={{
+                    paddingHorizontal: 20,
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                  }}>
                   <DatePicker
                     style={styles.datePickerStyle}
                     date={date}
@@ -475,17 +488,20 @@ export default class CreateGoalScreen extends Component {
                       this.setState({date: date});
                     }}
                   />
-
-                  <View
-                    style={{
-                      width: '100%',
-                      height: 1,
-                      backgroundColor: '#d3d3d3',
-                      marginTop: 10,
-                      marginBottom: 10,
-                    }}
+                  <Image
+                    source={require('../../commons/images/Calendar.png')}
                   />
                 </View>
+                <View
+                  style={{
+                    width: '90%',
+                    height: 1,
+                    backgroundColor: '#d3d3d3',
+                    marginTop: 10,
+                    marginBottom: 10,
+                    marginLeft: 20,
+                  }}
+                />
                 <View style={{paddingHorizontal: 20}}>
                   <Text style={{fontSize: 14, color: '#8A8BB3'}}>Time</Text>
                   <View
@@ -896,5 +912,3 @@ const styles = StyleSheet.create({
     // marginTop: 20,
   },
 });
-
-

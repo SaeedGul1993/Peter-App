@@ -14,6 +14,9 @@ import Modal from 'react-native-modal';
 
 const PurchaseMembership = ({navigation}) => {
   const [card, setCard] = useState(true);
+  const [card2, setCard2] = useState(false);
+  const [card3, setCard3] = useState(false);
+
   const [modal, setModal] = useState(false);
 
   const navigateToMemberShip = () => {
@@ -29,9 +32,7 @@ const PurchaseMembership = ({navigation}) => {
       backdropOpacity={1}
       backdropTransitionOutTiming={0}
       onBackdropPress={() => setModal(false)}
-      isVisible={modal}
-      // isVisible={true}
-      backdropOpacity={0.6}>
+      isVisible={modal}>
       <View
         style={{
           marginHorizontal: 20,
@@ -64,7 +65,6 @@ const PurchaseMembership = ({navigation}) => {
   return (
     <View style={{backgroundColor: 'white', flex: 1}}>
       <Header header="Purchase Membership" />
-
       <ScrollView>
         <View
           style={{
@@ -83,7 +83,6 @@ const PurchaseMembership = ({navigation}) => {
               <Text style={styles.heading}>
                 Challenge Membership Plan {'\n'}$30.00
               </Text>
-
               <View style={{alignItems: 'center'}}>
                 <ImageBackground
                   style={styles.uptoPercent}
@@ -114,15 +113,32 @@ const PurchaseMembership = ({navigation}) => {
 
         <View style={styles.sliderTabs}>
           <TouchableOpacity
-            onPress={() => setCard(true)}
+            onPress={() => {
+              setCard(true);
+              setCard2(false);
+              setCard3(false);
+            }}
             style={[styles.selector, {borderBottomWidth: card ? 2 : 0}]}>
             <Text style={{color: card ? '#7197FE' : 'black'}}>Card</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            onPress={() => setCard(false)}
-            style={[styles.selector, {borderBottomWidth: !card ? 2 : 0}]}>
-            <Text style={{color: !card ? '#7197FE' : 'black'}}>Google Pay</Text>
+            onPress={() => {
+              setCard(false);
+              setCard2(true);
+              setCard3(false);
+            }}
+            style={[styles.selector, {borderBottomWidth: card2 ? 2 : 0}]}>
+            <Text style={{color: card2 ? '#7197FE' : 'black'}}>Paypal</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              setCard(false);
+              setCard2(false);
+              setCard3(true);
+            }}
+            style={[styles.selector, {borderBottomWidth: card3 ? 2 : 0}]}>
+            <Text style={{color: card3 ? '#7197FE' : 'black'}}>Google Pay</Text>
           </TouchableOpacity>
         </View>
         {card ? (

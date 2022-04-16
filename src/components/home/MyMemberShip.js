@@ -136,15 +136,28 @@ export default class MyMemberShip extends Component {
     } = this.state;
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
-        <View style={{marginHorizontal: 20, marginVertical: 20}}>
+        <View style={{marginVertical: 20}}>
           <View>
             <View
               style={{
                 flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'space-between',
+                paddingHorizontal: 20,
               }}>
-              <TouchableOpacity activeOpacity={0.5} onPress={this.back}>
+              <TouchableOpacity
+                style={{
+                  borderRadius: 14,
+                  elevation: 2,
+                  backgroundColor: 'white',
+                  width: 39,
+                  height: 39,
+                  padding: 10,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+                activeOpacity={0.5}
+                onPress={this.back}>
                 <Image source={require('../../commons/images/back.png')} />
               </TouchableOpacity>
               <Text
@@ -164,14 +177,15 @@ export default class MyMemberShip extends Component {
             />
 
             <ScrollView
-              style={{marginBottom: 80}}
+              style={{marginBottom: 80, paddingHorizontal: 20}}
               showsVerticalScrollIndicator={false}>
               <View style={{marginTop: 10}}>
                 <View
                   style={{
-                    backgroundColor: '#d4ebfc',
+                    backgroundColor: '#D4EBFC',
                     borderRadius: 10,
                     marginVertical: 10,
+                    width: '100%',
                   }}>
                   <View>
                     <View
@@ -183,7 +197,7 @@ export default class MyMemberShip extends Component {
                         Challenge Membership Plan {'\n'}$30.00
                       </Text>
 
-                      <View style={{alignItems: 'center'}}>
+                      <View style={{alignItems: 'center', marginRight: 10}}>
                         <ImageBackground
                           style={styles.uptoPercent}
                           source={Images.blueRect}>
@@ -214,20 +228,28 @@ export default class MyMemberShip extends Component {
                         </Text>
 
                         <View style={styles.row}>
-                          <Image style={styles.tick} source={Images.tick1} />
+                          <Image
+                            style={styles.tick}
+                            source={require('../../commons/images/Vector12.png')}
+                          />
                           <Text style={styles.points}>
                             More than 3 friends and unlimited Challenges.
                           </Text>
                         </View>
-
                         <View style={styles.row}>
-                          <Image style={styles.tick} source={Images.tick1} />
+                          <Image
+                            style={styles.tick}
+                            source={require('../../commons/images/Vector12.png')}
+                          />
                           <Text numberOfLines={2} style={styles.points}>
                             Complete 2 smallest challenges & get day off.
                           </Text>
                         </View>
                         <View style={styles.row}>
-                          <Image style={styles.tick} source={Images.tick1} />
+                          <Image
+                            style={styles.tick}
+                            source={require('../../commons/images/Vector12.png')}
+                          />
                           <Text numberOfLines={2} style={styles.points}>
                             Complete the challenge, the winner gets some rewards
                           </Text>
@@ -236,7 +258,7 @@ export default class MyMemberShip extends Component {
                     </View>
                   </View>
                   <ImageBackground
-                    source={Images.blueBack}
+                    source={require('../../commons/images/blueBack.png')}
                     style={styles.footer}>
                     <TouchableOpacity
                       onPress={() => this._goDetailFriend()}
@@ -247,8 +269,6 @@ export default class MyMemberShip extends Component {
                 </View>
 
                 <View
-                  // activeOpacity={0.5}
-
                   style={{
                     backgroundColor: '#f8f1ff',
                     borderRadius: 10,
@@ -296,19 +316,28 @@ export default class MyMemberShip extends Component {
                           Includes
                         </Text>
                         <View style={styles.row}>
-                          <Image style={styles.tick} source={Images.tick1} />
+                          <Image
+                            style={styles.tick}
+                            source={require('../../commons/images/VectorLight.png')}
+                          />
                           <Text numberOfLines={2} style={styles.points}>
                             More than 3 friends and unlimited Challenges.
                           </Text>
                         </View>
                         <View style={styles.row}>
-                          <Image style={styles.tick} source={Images.tick1} />
+                          <Image
+                            style={styles.tick}
+                            source={require('../../commons/images/VectorLight.png')}
+                          />
                           <Text numberOfLines={2} style={styles.points}>
                             Complete 2 smallest challenges & get day off.
                           </Text>
                         </View>
                         <View style={styles.row}>
-                          <Image style={styles.tick} source={Images.tick1} />
+                          <Image
+                            style={styles.tick}
+                            source={require('../../commons/images/VectorLight.png')}
+                          />
                           <Text numberOfLines={2} style={styles.points}>
                             Complete the challenge, the winner gets some rewards
                           </Text>
@@ -317,8 +346,8 @@ export default class MyMemberShip extends Component {
                     </View>
                   </View>
                   <ImageBackground
-                    resizeMode="contain"
-                    source={Images.purpleBack}
+                    resizeMode="cover"
+                    source={require('../../commons/images/purpleBack.png')}
                     style={styles.footer}>
                     <TouchableOpacity
                       onPress={this._goDetailFriend}
@@ -370,15 +399,16 @@ const styles = StyleSheet.create({
   points: {
     fontSize: 14,
     color: 'black',
-    fontWeight: '900',
+    fontWeight: 'bold',
     fontFamily: 'ser',
   },
   heading: {
-    fontSize: 22,
+    fontSize: 18,
     color: '#648CFF',
     fontWeight: 'bold',
     fontStyle: 'italic',
     marginVertical: 10,
+    paddingLeft: 10,
   },
   include: {
     marginLeft: 20,
@@ -403,6 +433,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     textAlign: 'center',
+    marginTop: 5,
   },
 });
 

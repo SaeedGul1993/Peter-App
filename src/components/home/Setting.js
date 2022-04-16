@@ -26,7 +26,7 @@ export default class Setting extends Component {
     title: '',
     description: '',
     newtag: '',
-    reminder: true,
+    reminder: false,
     reminder2: false,
     date: '',
     time1: '',
@@ -114,7 +114,7 @@ export default class Setting extends Component {
   };
 
   _goInvitation = () => {
-    this.props.navigation.navigate('MyInvitation');
+    this.props.navigation.navigate('MyInvitations');
   };
 
   _gomembership = () => {
@@ -139,15 +139,28 @@ export default class Setting extends Component {
     } = this.state;
     return (
       <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
-        <View style={{marginHorizontal: 20, marginVertical: 20}}>
+        <View style={{marginVertical: 20}}>
           <View>
             <View
               style={{
                 flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'space-between',
+                paddingHorizontal: 20,
               }}>
-              <TouchableOpacity activeOpacity={0.5} onPress={this.back}>
+              <TouchableOpacity
+                style={{
+                  borderRadius: 14,
+                  elevation: 2,
+                  backgroundColor: 'white',
+                  width: 39,
+                  height: 39,
+                  padding: 10,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+                activeOpacity={0.5}
+                onPress={this.back}>
                 <Image source={require('../../commons/images/back.png')} />
               </TouchableOpacity>
               <Text
@@ -165,9 +178,8 @@ export default class Setting extends Component {
                 marginVertical: 10,
               }}
             />
-
             <ScrollView
-              style={{marginBottom: 80}}
+              style={{marginBottom: 80, paddingHorizontal: 20}}
               showsVerticalScrollIndicator={false}>
               <View style={{marginTop: 10}}>
                 <Text
@@ -200,7 +212,8 @@ export default class Setting extends Component {
                     {this.state.username}
                   </Text>
                   <Image
-                    source={require('../../commons/images/backleft.png')}
+                    source={require('../../commons/images/backLeft.png')}
+                    resizeMode="stretch"
                   />
                 </View>
               </TouchableOpacity>
@@ -303,7 +316,10 @@ export default class Setting extends Component {
                 <Text style={{fontSize: 16, color: '#10275A'}}>
                   Remove all Todo
                 </Text>
-                <Image source={require('../../commons/images/backleft.png')} />
+                <Image
+                  source={require('../../commons/images/backLeft.png')}
+                  resizeMode="stretch"
+                />
               </TouchableOpacity>
               <View style={{}}>
                 <Modal
@@ -312,7 +328,7 @@ export default class Setting extends Component {
                   backdropOpacity={0.6}>
                   <View
                     style={{
-                      marginHorizontal: 10,
+                      marginHorizontal: 0,
                       paddingVertical: 20,
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -321,7 +337,7 @@ export default class Setting extends Component {
                     }}>
                     <Text
                       style={{
-                        fontSize: 22,
+                        fontSize: 24,
                         color: '#10275A',
                         fontWeight: 'bold',
                       }}>
@@ -329,15 +345,15 @@ export default class Setting extends Component {
                     </Text>
                     <View
                       style={{
-                        paddingHorizontal: 20,
+                        paddingHorizontal: 0,
                         alignItems: 'center',
                         justifyContent: 'center',
                         marginVertical: 10,
                       }}>
-                      <Text style={{fontSize: 16, color: '#10275A'}}>
+                      <Text style={{fontSize: 14, color: '#10275A'}}>
                         Are you sure remove all Todo
                       </Text>
-                      <Text style={{fontSize: 16, color: '#10275A'}}>
+                      <Text style={{fontSize: 14, color: '#10275A'}}>
                         from this account ?
                       </Text>
                     </View>
@@ -396,7 +412,10 @@ export default class Setting extends Component {
                 <Text style={{fontSize: 16, color: '#10275A'}}>
                   Remove all Self challenges
                 </Text>
-                <Image source={require('../../commons/images/backleft.png')} />
+                <Image
+                  source={require('../../commons/images/backLeft.png')}
+                  resizeMode="stretch"
+                />
               </TouchableOpacity>
               <View style={{}}>
                 <Modal
@@ -414,7 +433,7 @@ export default class Setting extends Component {
                     }}>
                     <Text
                       style={{
-                        fontSize: 22,
+                        fontSize: 20,
                         color: '#10275A',
                         fontWeight: 'bold',
                       }}>
@@ -427,10 +446,10 @@ export default class Setting extends Component {
                         justifyContent: 'center',
                         marginVertical: 10,
                       }}>
-                      <Text style={{fontSize: 16, color: '#10275A'}}>
+                      <Text style={{fontSize: 14, color: '#10275A'}}>
                         Are you sure remove all Challenges
                       </Text>
-                      <Text style={{fontSize: 16, color: '#10275A'}}>
+                      <Text style={{fontSize: 14, color: '#10275A'}}>
                         from this account ?
                       </Text>
                     </View>
@@ -489,7 +508,10 @@ export default class Setting extends Component {
                 <Text style={{fontSize: 16, color: '#10275A'}}>
                   Remove all Friend challenges
                 </Text>
-                <Image source={require('../../commons/images/backleft.png')} />
+                <Image
+                  source={require('../../commons/images/backLeft.png')}
+                  resizeMode="stretch"
+                />
               </TouchableOpacity>
               <View style={{}}>
                 <Modal
@@ -507,7 +529,7 @@ export default class Setting extends Component {
                     }}>
                     <Text
                       style={{
-                        fontSize: 22,
+                        fontSize: 20,
                         color: '#10275A',
                         fontWeight: 'bold',
                       }}>
@@ -520,10 +542,10 @@ export default class Setting extends Component {
                         justifyContent: 'center',
                         marginVertical: 10,
                       }}>
-                      <Text style={{fontSize: 16, color: '#10275A'}}>
+                      <Text style={{fontSize: 14, color: '#10275A'}}>
                         Are you sure remove all Challenges
                       </Text>
-                      <Text style={{fontSize: 16, color: '#10275A'}}>
+                      <Text style={{fontSize: 14, color: '#10275A'}}>
                         from this account ?
                       </Text>
                     </View>
@@ -588,7 +610,10 @@ export default class Setting extends Component {
                 <Text style={{fontSize: 16, color: '#10275A'}}>
                   My Invitations
                 </Text>
-                <Image source={require('../../commons/images/backleft.png')} />
+                <Image
+                  source={require('../../commons/images/backLeft.png')}
+                  resizeMode="stretch"
+                />
               </TouchableOpacity>
 
               <View style={{marginTop: 15}}>
@@ -609,11 +634,16 @@ export default class Setting extends Component {
                 <Text style={{fontSize: 16, color: '#10275A'}}>
                   Membership Plan
                 </Text>
-                <Image source={require('../../commons/images/backleft.png')} />
+                <Image
+                  source={require('../../commons/images/backLeft.png')}
+                  resizeMode="stretch"
+                />
               </TouchableOpacity>
               <TouchableOpacity
                 activeOpacity={0.5}
-                onPress={this._gonotificationoffer}
+                onPress={() =>
+                  this.props.navigation.navigate('MyOfferAndNotification')
+                }
                 style={{
                   flexDirection: 'row',
                   alignItems: 'center',
@@ -623,7 +653,10 @@ export default class Setting extends Component {
                 <Text style={{fontSize: 16, color: '#10275A'}}>
                   My Offer & Notifications
                 </Text>
-                <Image source={require('../../commons/images/backleft.png')} />
+                <Image
+                  source={require('../../commons/images/backLeft.png')}
+                  resizeMode="stretch"
+                />
               </TouchableOpacity>
 
               <View style={{marginTop: 15}}>
@@ -642,13 +675,16 @@ export default class Setting extends Component {
                 <Text style={{fontSize: 16, color: '#10275A'}}>
                   Allow Notification
                 </Text>
-                <Switch
-                  trackColor={{false: '#d3d3d3', true: '#648CFF'}}
-                  thumbColor={this.state.reminder ? 'white' : 'white'}
-                  ios_backgroundColor="#3e3e3e"
-                  onValueChange={this.toggleSwitch}
-                  value={this.state.reminder}
-                />
+                <TouchableOpacity onPress={this.toggleSwitch}>
+                  <Image
+                    resizeMode="center"
+                    source={
+                      this.state.reminder
+                        ? require('../../commons/images/On.png')
+                        : require('../../commons/images/Off.png')
+                    }
+                  />
+                </TouchableOpacity>
               </View>
               <View
                 style={{
@@ -660,13 +696,16 @@ export default class Setting extends Component {
                 <Text style={{fontSize: 16, color: '#10275A'}}>
                   Allow the Notification Rings
                 </Text>
-                <Switch
-                  trackColor={{false: '#d3d3d3', true: '#648CFF'}}
-                  thumbColor={this.state.reminder2 ? 'white' : 'white'}
-                  ios_backgroundColor="#3e3e3e"
-                  onValueChange={this.toggleSwitch2}
-                  value={this.state.reminder2}
-                />
+                <TouchableOpacity onPress={this.toggleSwitch2}>
+                  <Image
+                    resizeMode="center"
+                    source={
+                      this.state.reminder2
+                        ? require('../../commons/images/On.png')
+                        : require('../../commons/images/Off.png')
+                    }
+                  />
+                </TouchableOpacity>
               </View>
             </ScrollView>
           </View>
