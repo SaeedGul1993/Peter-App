@@ -41,6 +41,7 @@ import CustomNotificationModal from './src/commons/custom/customNotificationModa
 import messaging from '@react-native-firebase/messaging';
 import MyOfferNotification from './src/components/home/MyOffer&Notification';
 import MyInvitation from './src/components/home/MyInvitation';
+import {NativeBaseProvider} from 'native-base';
 
 const Stack = createStackNavigator();
 // const Drawer = createDrawerNavigator();
@@ -378,16 +379,18 @@ const App = () => {
   };
 
   return (
-    <NavigationContainer>
-      <CustomNotificationModal
-        open={notificationModal}
-        closeModal={() => setNotificationModal(false)}
-      />
-      <SettingScreenStack
-        notificationModal={notificationModal}
-        setNotificationModal={setNotificationModal}
-      />
-    </NavigationContainer>
+    <NativeBaseProvider>
+      <NavigationContainer>
+        <CustomNotificationModal
+          open={notificationModal}
+          closeModal={() => setNotificationModal(false)}
+        />
+        <SettingScreenStack
+          notificationModal={notificationModal}
+          setNotificationModal={setNotificationModal}
+        />
+      </NavigationContainer>
+    </NativeBaseProvider>
   );
 };
 

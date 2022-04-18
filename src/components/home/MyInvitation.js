@@ -465,21 +465,22 @@ export default class MyInvitation extends Component {
                       flexDirection: 'row',
                       alignItems: 'center',
                       justifyContent: 'space-between',
+                      marginVertical: 10,
                     }}>
                     <View
                       style={{
                         flexDirection: 'row',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        backgroundColor: '#ECEAFF',
-                        paddingHorizontal: 15,
-                        paddingVertical: 4,
+                        backgroundColor: '#E88B8C13',
+                        paddingHorizontal: 10,
+                        width: 80,
+                        paddingVertical: 5,
                         borderRadius: 22,
-                        borderColor: '#7197FE',
+                        borderColor: '#E88B8C',
                         borderWidth: 1,
-                        marginRight: 5,
                       }}>
-                      <Text style={{fontSize: 12, color: '#7197FE'}}>
+                      <Text style={{fontSize: 12, color: '#E88B8C'}}>
                         10 days
                       </Text>
                     </View>
@@ -487,13 +488,17 @@ export default class MyInvitation extends Component {
                       style={{
                         flexDirection: 'row',
                         alignItems: 'center',
-                        justifyContent: 'center',
+                        justifyContent: 'space-between',
                         backgroundColor: '#7197FE',
-                        paddingHorizontal: 20,
+                        paddingHorizontal: 10,
                         paddingVertical: 5,
                         borderRadius: 22,
-                        marginRight: 5,
+                        marginHorizontal: 5,
                       }}>
+                      <Image
+                        source={require('../../commons/images/soccer-ball_26bd.png')}
+                        style={{marginRight: 5}}
+                      />
                       <Text style={{fontSize: 12, color: 'white'}}>
                         Football
                       </Text>
@@ -502,16 +507,20 @@ export default class MyInvitation extends Component {
                       style={{
                         flexDirection: 'row',
                         alignItems: 'center',
-                        justifyContent: 'center',
-                        backgroundColor: '#ECEAFF',
-                        paddingHorizontal: 15,
+                        justifyContent: 'flex-start',
+                        backgroundColor: '#E88B8C13',
+                        paddingHorizontal: 10,
                         width: 80,
-                        paddingVertical: 4,
+                        paddingVertical: 5,
                         borderRadius: 22,
-                        borderColor: '#7197FE',
+                        borderColor: '#E88B8C',
                         borderWidth: 1,
                       }}>
-                      <Text style={{fontSize: 14, color: '#7197FE'}}>Eat</Text>
+                      <Image
+                        source={require('../../commons/images/broccoli_1f966.png')}
+                        style={{marginRight: 5}}
+                      />
+                      <Text style={{fontSize: 12, color: '#E88B8C'}}>Eat</Text>
                     </View>
                   </View>
                   <Text>5</Text>

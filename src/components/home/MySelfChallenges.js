@@ -22,6 +22,7 @@ import Modal from 'react-native-modal';
 import CalendarPicker from 'react-native-calendar-picker';
 import moment from 'moment';
 import ReactNativeCalendarStrip from 'react-native-calendar-strip';
+import {Avatar} from 'native-base';
 
 export default class MySelfChallenges extends Component {
   state = {
@@ -110,6 +111,73 @@ export default class MySelfChallenges extends Component {
     this._titleinput.clear();
   };
 
+  _renderUserAvatars = () => {
+    return (
+      <Avatar.Group
+        _avatar={{
+          size: 'xs',
+        }}
+        max={3}>
+        <Avatar
+          bg="green.500"
+          source={{
+            uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+          }}>
+          AJ
+        </Avatar>
+        <Avatar
+          bg="cyan.500"
+          source={{
+            uri: 'https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+          }}>
+          TE
+        </Avatar>
+        <Avatar
+          bg="indigo.500"
+          source={{
+            uri: 'https://images.unsplash.com/photo-1614289371518-722f2615943d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+          }}>
+          JB
+        </Avatar>
+        <Avatar
+          bg="amber.500"
+          source={{
+            uri: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+          }}>
+          TS
+        </Avatar>
+        <Avatar
+          bg="green.500"
+          source={{
+            uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+          }}>
+          AJ
+        </Avatar>
+        <Avatar
+          bg="cyan.500"
+          source={{
+            uri: 'https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+          }}>
+          TE
+        </Avatar>
+        <Avatar
+          bg="indigo.500"
+          source={{
+            uri: 'https://images.unsplash.com/photo-1614289371518-722f2615943d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+          }}>
+          JB
+        </Avatar>
+        <Avatar
+          bg="amber.500"
+          source={{
+            uri: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+          }}>
+          TS
+        </Avatar>
+      </Avatar.Group>
+    );
+  };
+
   _renderCards = () => {
     return (
       <View
@@ -153,19 +221,27 @@ export default class MySelfChallenges extends Component {
                 navigation={this.props.navigation}
                 route={this.props.route}
                 isIcon={true}
+                isTodo={true}
                 iconName="dots-vertical"
                 color="#2C406E"
               />
             </View>
-
-            <Text
+            <View
               style={{
-                fontSize: 11,
-                color: '#10275A',
-                marginLeft: 10,
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
               }}>
-              5 August
-            </Text>
+              <Text
+                style={{
+                  fontSize: 11,
+                  color: '#10275A',
+                  marginLeft: 10,
+                }}>
+                5 August
+              </Text>
+              {this._renderUserAvatars()}
+            </View>
           </View>
         </View>
         <View
@@ -181,43 +257,51 @@ export default class MySelfChallenges extends Component {
               flexDirection: 'row',
               alignItems: 'center',
               justifyContent: 'center',
-              backgroundColor: '#fadadd',
+              backgroundColor: '#E88B8C13',
               paddingHorizontal: 10,
               width: 90,
-              paddingVertical: 8,
+              paddingVertical: 5,
               borderRadius: 22,
               borderColor: '#E88B8C',
               borderWidth: 1,
             }}>
-            <Text style={{fontSize: 14, color: '#E88B8C'}}>10 days</Text>
+            <Text style={{fontSize: 12, color: '#E88B8C'}}>10 days</Text>
           </View>
           <View
             style={{
               flexDirection: 'row',
               alignItems: 'center',
-              justifyContent: 'center',
+              justifyContent: 'space-between',
               backgroundColor: '#7197FE',
-              paddingHorizontal: 20,
-              paddingVertical: 8,
+              paddingHorizontal: 10,
+              paddingVertical: 5,
               borderRadius: 22,
               marginHorizontal: 5,
             }}>
-            <Text style={{fontSize: 14, color: 'white'}}>Football</Text>
+            <Image
+              source={require('../../commons/images/soccer-ball_26bd.png')}
+              style={{marginRight: 5}}
+            />
+            <Text style={{fontSize: 12, color: 'white'}}>Football</Text>
           </View>
           <View
             style={{
               flexDirection: 'row',
               alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: '#fadadd',
+              justifyContent: 'flex-start',
+              backgroundColor: '#E88B8C13',
               paddingHorizontal: 10,
               width: 90,
-              paddingVertical: 8,
+              paddingVertical: 5,
               borderRadius: 22,
               borderColor: '#E88B8C',
               borderWidth: 1,
             }}>
-            <Text style={{fontSize: 14, color: '#E88B8C'}}>Eat</Text>
+            <Image
+              source={require('../../commons/images/broccoli_1f966.png')}
+              style={{marginRight: 5}}
+            />
+            <Text style={{fontSize: 12, color: '#E88B8C'}}>Eat</Text>
           </View>
         </View>
       </View>

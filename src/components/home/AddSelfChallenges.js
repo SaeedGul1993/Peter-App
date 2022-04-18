@@ -427,21 +427,21 @@ export default class CreateGoalScreen extends Component {
                             flexDirection: 'row',
                             alignItems: 'center',
                             justifyContent: 'space-between',
-                            backgroundColor: 'white',
+                            backgroundColor: '#ECEAFF50',
                             paddingHorizontal: 10,
-                            paddingVertical: 8,
-                            borderRadius: 22,
+                            paddingVertical: 7,
+                            borderRadius: 25,
                             marginRight: 5,
                             borderColor: '#7197FE',
                             borderWidth: 1,
                           }}>
-                          <Text style={{fontSize: 14, color: '#7197FE'}}>
+                          <Text style={{fontSize: 12, color: '#7197FE'}}>
                             {item?.title}
                           </Text>
                           <TouchableOpacity
                             activeOpacity={0.5}
                             style={{marginLeft: 10}}>
-                            <Text style={{fontSize: 12, color: '#7197FE'}}>
+                            <Text style={{fontSize: 10, color: '#7197FE'}}>
                               X
                             </Text>
                           </TouchableOpacity>
