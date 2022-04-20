@@ -14,12 +14,17 @@ import Icon2 from 'react-native-vector-icons/AntDesign';
 import CustomMaterialMenu from '../../commons/custom/CustomMaterialMenu';
 import Modal from 'react-native-modal';
 import {getLogin} from '../../commons/Constant';
+import AsyncStorage from '@react-native-community/async-storage';
+
 const height = Dimensions.get('window').height;
 
 export default class CreateGoalScreen extends Component {
   state = {
     modalVisible1: false,
     modalVisible2: false,
+    username: '',
+    myTodyTodos: [],
+    access_token: '',
   };
   back = () => {
     this.props.navigation.goBack();
@@ -37,7 +42,7 @@ export default class CreateGoalScreen extends Component {
     this.setState({modalVisible2: true});
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     getLogin()
       .then(obj => {
         console.log('obj', obj);
@@ -46,7 +51,56 @@ export default class CreateGoalScreen extends Component {
       .catch(err => {
         console.log('err', err);
       });
+    const access_token = await AsyncStorage.getItem('token');
+    console.log('token', access_token);
+    this.setState(
+      {
+        access_token,
+      },
+      () => {
+        this._getTodos(this.state.access_token);
+      },
+    );
+    this.getName();
   }
+
+  _getTodos = token => {
+    fetch('http://54.189.183.64/todo/api/v1/todo/', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        // 'Authorization': `JWT ${raw}`
+        Authorization: `JWT ${token}`,
+      },
+    })
+      .then(response => response.json())
+      .then(responseJson => {
+        console.log('response times of my todo', responseJson?.results);
+        let filteredOutTodayTodos = responseJson?.results?.filter(
+          item =>
+            moment(item?.due_date).format('YYYY-MM-DD') ===
+            moment().format('YYYY-MM-DD'),
+        );
+        console.log('filteredOutTodayTodos', filteredOutTodayTodos);
+        this.setState({
+          myTodyTodos: filteredOutTodayTodos,
+        });
+      })
+      .catch(err => {
+        this.setState({
+          loading: false,
+        });
+        console.log('error', err);
+      });
+  };
+
+  getName = async () => {
+    const firstName = await AsyncStorage.getItem('login');
+    console.log('first', firstName);
+    this.setState({
+      username: firstName,
+    });
+  };
 
   render() {
     const {modalVisible1, modalVisible2} = this.state;
@@ -101,7 +155,7 @@ export default class CreateGoalScreen extends Component {
                   marginTop: 20,
                   fontWeight: 'bold',
                 }}>
-                Peter Song
+                {this.state.username}
               </Text>
               <View style={{marginVertical: 3}}>
                 <Text
@@ -157,7 +211,9 @@ export default class CreateGoalScreen extends Component {
                       color: '#2C406E',
                       marginTop: -5,
                     }}></Text>
-                  <Text style={{fontSize: 14, color: '#9AA8C7'}}>4</Text>
+                  <Text style={{fontSize: 14, color: '#9AA8C7'}}>
+                    {this.state.myTodyTodos?.length}
+                  </Text>
                   <Text style={{fontSize: 10, color: '#BE82FF'}}>
                     Completed
                   </Text>

@@ -1,4 +1,3 @@
-
 import React, {Component} from 'react';
 import {
   View,
@@ -214,7 +213,7 @@ export default class CreateGoalScreen extends Component {
                 <Image source={require('../../commons/images/back.png')} />
               </TouchableOpacity>
               <Text style={{fontSize: 18, color: '#10275A', fontWeight: '900'}}>
-              Add Challenge with Friend
+                Add Challenge with Friend
               </Text>
               <View style={{width: 30}} />
             </View>
@@ -571,97 +570,42 @@ export default class CreateGoalScreen extends Component {
                   <View style={{}}>
                     <Modal
                       isVisible={modalVisible1}
+                      style={{margin: 0}}
                       // isVisible={true}
                       backdropOpacity={0.6}>
                       <View
                         style={{
-                          marginHorizontal: 20,
                           paddingVertical: 20,
                           alignItems: 'center',
-                          justifyContent: 'center',
-                          backgroundColor: '#5E87FF',
-                          borderRadius: 15,
+                          justifyContent: 'flex-start',
+                          backgroundColor: 'white',
+                          flex: 1,
                         }}>
-                        <View
-                          style={{
-                            borderColor: 'white',
-                            borderWidth: 1,
-                            borderRadius: 15,
-                            marginVertical: 20,
-                            width: '90%',
-                            height: 50,
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            justifyContent: 'space-between',
-                            paddingHorizontal: 15,
-                          }}>
-                          <Picker
-                            itemStyle={styles.itemStyle}
-                            mode="dropdown"
-                            style={styles.pickerStyle}
-                            selectedValue={selectedCategory}
-                            onValueChange={() => this.ChangeCategory}>
-                            {category.map((item, index) => (
-                              <Picker.Item
-                                color="#10275A"
-                                label={item.itemName}
-                                value={item.itemName}
-                                index={index}
-                              />
-                            ))}
-                          </Picker>
-                          <TouchableOpacity
-                            activeOpacity={0.5}
-                            style={{
-                              height: 30,
-                              width: 30,
-                              borderRadius: 5,
-                              borderColor: 'white',
-                              borderWidth: 1,
-                            }}>
-                            <Icon1 name="plus" color="white" size={25} />
-                          </TouchableOpacity>
-                        </View>
-                        <View
-                          style={{
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            justifyContent: 'space-around',
-                            marginVertical: 10,
-                          }}>
-                          <TouchableOpacity
-                            activeOpacity={0.5}
-                            onPress={this._modalVisble1}
-                            style={{
-                              width: 90,
-                              height: 35,
-                              backgroundColor: 'white',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              borderRadius: 5,
-                              marginHorizontal: 10,
-                            }}>
-                            <Text style={{fontSize: 14, color: '#5E87FF'}}>
-                              Cancel
+                        <TouchableOpacity
+                          style={{width: '95%'}}
+                          onPress={() =>
+                            this.setState({
+                              modalVisible1: false,
+                            })
+                          }>
+                          <View style={{width: '95%'}}>
+                            <Text
+                              style={{
+                                alignSelf: 'flex-end',
+                                color: 'grey',
+                                fontSize: 20,
+                              }}>
+                              x
                             </Text>
-                          </TouchableOpacity>
-                          <TouchableOpacity
-                            activeOpacity={0.5}
-                            onPress={this._modalVisble1}
-                            style={{
-                              width: 90,
-                              height: 35,
-                              backgroundColor: 'white',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              borderRadius: 5,
-                              marginHorizontal: 10,
-                            }}>
-                            <Text style={{fontSize: 14, color: '#5E87FF'}}>
-                              Save
-                            </Text>
-                          </TouchableOpacity>
-                        </View>
+                          </View>
+                        </TouchableOpacity>
+                        <Text
+                          style={{
+                            fontSize: 20,
+                            fontWeight: 'bold',
+                          }}>
+                          Categories
+                        </Text>
                       </View>
                     </Modal>
                   </View>
@@ -702,96 +646,44 @@ export default class CreateGoalScreen extends Component {
                     <Icon name="dots-vertical" size={25} color="#2C406E" />
                   </View>
                   <View style={{}}>
-                    <Modal isVisible={modalVisible2} backdropOpacity={0.6}>
+                    <Modal
+                      isVisible={modalVisible2}
+                      style={{margin: 0}}
+                      // isVisible={true}
+                      backdropOpacity={0.6}>
                       <View
                         style={{
-                          marginHorizontal: 20,
                           paddingVertical: 20,
                           alignItems: 'center',
-                          justifyContent: 'center',
-                          backgroundColor: '#5E87FF',
-                          borderRadius: 15,
+                          justifyContent: 'flex-start',
+                          backgroundColor: 'white',
+                          flex: 1,
                         }}>
-                        <View
-                          style={{
-                            borderColor: 'white',
-                            borderWidth: 1,
-                            borderRadius: 15,
-                            marginVertical: 20,
-                            width: '90%',
-                            height: 50,
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            justifyContent: 'space-between',
-                            paddingHorizontal: 15,
-                          }}>
-                          <Picker
-                            itemStyle={styles.itemStyle}
-                            mode="dropdown"
-                            style={styles.pickerStyle}
-                            selectedValue={selectedType}
-                            onValueChange={() => this.ChangeType}>
-                            {type.map((item, index) => (
-                              <Picker.Item
-                                color="#10275A"
-                                label={item.itemName}
-                                value={item.itemName}
-                                index={index}
-                              />
-                            ))}
-                          </Picker>
-                          <TouchableOpacity
-                            activeOpacity={0.5}
-                            style={{
-                              height: 30,
-                              width: 30,
-                              borderRadius: 5,
-                              borderColor: 'white',
-                              borderWidth: 1,
-                            }}>
-                            <Icon1 name="plus" color="white" size={25} />
-                          </TouchableOpacity>
-                        </View>
-                        <View
-                          style={{
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            justifyContent: 'space-around',
-                            marginVertical: 10,
-                          }}>
-                          <TouchableOpacity
-                            activeOpacity={0.5}
-                            onPress={this._modalVisble2}
-                            style={{
-                              width: 90,
-                              height: 35,
-                              backgroundColor: 'white',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              borderRadius: 5,
-                              marginHorizontal: 10,
-                            }}>
-                            <Text style={{fontSize: 14, color: '#5E87FF'}}>
-                              Cancel
+                        <TouchableOpacity
+                          style={{width: '95%'}}
+                          onPress={() =>
+                            this.setState({
+                              modalVisible2: false,
+                            })
+                          }>
+                          <View style={{width: '95%'}}>
+                            <Text
+                              style={{
+                                alignSelf: 'flex-end',
+                                color: 'grey',
+                                fontSize: 20,
+                              }}>
+                              x
                             </Text>
-                          </TouchableOpacity>
-                          <TouchableOpacity
-                            activeOpacity={0.5}
-                            onPress={this._modalVisble2}
-                            style={{
-                              width: 90,
-                              height: 35,
-                              backgroundColor: 'white',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              borderRadius: 5,
-                              marginHorizontal: 10,
-                            }}>
-                            <Text style={{fontSize: 14, color: '#5E87FF'}}>
-                              Save
-                            </Text>
-                          </TouchableOpacity>
-                        </View>
+                          </View>
+                        </TouchableOpacity>
+                        <Text
+                          style={{
+                            fontSize: 20,
+                            fontWeight: 'bold',
+                          }}>
+                          Types
+                        </Text>
                       </View>
                     </Modal>
                   </View>
@@ -832,7 +724,9 @@ export default class CreateGoalScreen extends Component {
                     }}>
                     <TouchableOpacity
                       activeOpacity={0.5}
-                      onPress={()=>this.props.navigation.navigate('InviteFriendToGoogle')}>
+                      onPress={() =>
+                        this.props.navigation.navigate('InviteFriendToGoogle')
+                      }>
                       <Image
                         source={require('../../commons/images/google.png')}
                       />
@@ -840,7 +734,9 @@ export default class CreateGoalScreen extends Component {
                     <Text style={{fontSize: 14, color: '#8A8BB3'}}>or</Text>
                     <TouchableOpacity
                       activeOpacity={0.5}
-                      onPress={()=>this.props.navigation.navigate('InviteFriendToGoogle')}>
+                      onPress={() =>
+                        this.props.navigation.navigate('InviteFriendToGoogle')
+                      }>
                       <Image
                         source={require('../../commons/images/facebook-6.png')}
                         resizeMode="center"
