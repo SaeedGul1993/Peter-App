@@ -70,12 +70,12 @@ export default class CreateGoalScreen extends Component {
     console.log('params', this.props.route?.params);
     let item = this.props?.route?.params?.item;
     let isEdit = this.props?.route?.params?.isEdit;
-
+    console.log('item', item);
     if (isEdit === true) {
       this.setState({
         title: item?.name,
         description: item?.description,
-        date: item?.due_date,
+        date: moment(item?.due_date,['YYYY-MM-DD']).format('MM-DD-YYYY'),
         reminderTime: item?.reminder_time,
         editTodoId: item?.id,
         selectedEmoji: item?.emoji,
@@ -155,7 +155,7 @@ export default class CreateGoalScreen extends Component {
     const body = JSON.stringify({
       name: this.state.title,
       description: this.state.description,
-      due_date: this.state.date,
+      due_date: moment(this.state.date,['MM-DD-YYYY']).format('YYYY-MM-DD'),
       emoji: this.state.selectedEmoji,
       // tags: this.state.tags,
       reminder_time: this.state.reminderTime,

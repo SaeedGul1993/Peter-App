@@ -15,6 +15,7 @@ import Modal from 'react-native-modal';
 import AsyncStorage from '@react-native-community/async-storage';
 import moment from 'moment';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import dynamicLinks from '@react-native-firebase/dynamic-links';
 
 export default class Home extends Component {
   state = {
@@ -37,6 +38,36 @@ export default class Home extends Component {
         this._getTodos(this.state.access_token);
       },
     );
+    this.buildLink();
+    dynamicLinks().onLink(this.handleDynamicLink);
+    dynamicLinks()
+      .getInitialLink()
+      .then(link => {
+        console.log('background listener', link?.url);
+      });
+  }
+  handleDynamicLink = link => {
+    console.log('foreground listener', link?.url);
+  };
+
+  componentWillUnmount() {
+    dynamicLinks().onLink(this.handleDynamicLink);
+  }
+  async buildLink() {
+    const link = await dynamicLinks().buildShortLink(
+      {
+        link: 'https://stretchyo.page.link/invite',
+        domainUriPrefix: 'https://stretchyo.page.link',
+        analytics: {
+          campaign: 'friend_invitation',
+        },
+        android: {
+          packageName: 'com.taskmanager',
+        },
+      },
+      'UNGUESSABLE',
+    );
+    console.log('link', link);
   }
   _goGoal = () => {
     this.props.navigation.navigate('CreateGoalScreen');

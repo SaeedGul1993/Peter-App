@@ -13,6 +13,7 @@
     "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/datetimepicker": "^3.5.2",
     "@react-native-firebase/app": "^14.7.0",
+    "@react-native-firebase/dynamic-links": "^14.8.0",
     "@react-native-firebase/messaging": "^14.7.0",
     "@react-native-google-signin/google-signin": "^7.0.1",
     "@react-navigation/bottom-tabs": "^6.0.4",
