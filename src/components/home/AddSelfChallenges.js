@@ -22,6 +22,7 @@ import DatePicker from 'react-native-datepicker';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import Modal from 'react-native-modal';
 import moment from 'moment';
+import {FlatList} from 'react-native-gesture-handler';
 
 export default class CreateGoalScreen extends Component {
   state = {
@@ -67,39 +68,82 @@ export default class CreateGoalScreen extends Component {
     ],
     category: [
       {
-        itemName: 'Select Category',
+        heading: 'Sports',
+        data: [
+          {
+            name: 'Football',
+            image: require('../../commons/images/soccer-ball_26bd.png'),
+            checked: false,
+          },
+          {
+            name: 'Walking/Jogging',
+            image: require('../../commons/images/soccer-ball_26bd.png'),
+            checked: false,
+          },
+          {
+            name: 'Health',
+            image: require('../../commons/images/soccer-ball_26bd.png'),
+            checked: false,
+          },
+          {
+            name: 'Education study',
+            image: require('../../commons/images/soccer-ball_26bd.png'),
+            checked: false,
+          },
+        ],
       },
       {
-        itemName: 'Football',
+        heading: 'Thoughts',
+        data: [
+          {
+            name: 'Football',
+            image: require('../../commons/images/soccer-ball_26bd.png'),
+            checked: false,
+          },
+          {
+            name: 'Walking/Jogging',
+            image: require('../../commons/images/soccer-ball_26bd.png'),
+            checked: false,
+          },
+          {
+            name: 'Health',
+            image: require('../../commons/images/soccer-ball_26bd.png'),
+            checked: false,
+          },
+          {
+            name: 'Education study',
+            image: require('../../commons/images/soccer-ball_26bd.png'),
+            checked: false,
+          },
+        ],
       },
       {
-        itemName: 'Fitness Exercise',
-      },
-      {
-        itemName: 'Health',
-      },
-      {
-        itemName: 'Education study',
+        heading: 'Excercise',
+        data: [
+          {
+            name: 'Football',
+            image: require('../../commons/images/soccer-ball_26bd.png'),
+            checked: false,
+          },
+          {
+            name: 'Walking/Jogging',
+            image: require('../../commons/images/soccer-ball_26bd.png'),
+            checked: false,
+          },
+          {
+            name: 'Health',
+            image: require('../../commons/images/soccer-ball_26bd.png'),
+            checked: false,
+          },
+          {
+            name: 'Education study',
+            image: require('../../commons/images/soccer-ball_26bd.png'),
+            checked: false,
+          },
+        ],
       },
     ],
     selectedType: '',
-    type: [
-      {
-        itemName: 'Select Type',
-      },
-      {
-        itemName: 'Cycling',
-      },
-      {
-        itemName: 'Weight Lifting',
-      },
-      {
-        itemName: 'Eating Food',
-      },
-      {
-        itemName: 'Meditation',
-      },
-    ],
   };
 
   componentDidMount() {
@@ -164,6 +208,33 @@ export default class CreateGoalScreen extends Component {
     setTimeout(() => {
       this.setState({modalVisible3: false});
     }, 1000);
+  };
+
+  onClicked = (mainIndex, SubIndex) => {
+    let mappedOut = this.state?.category?.map((item, index) => {
+      if (index === mainIndex) {
+        return {
+          heading: item?.heading,
+          data: item?.data?.map((subItem, subIndex) => {
+            if (subIndex === SubIndex) {
+              return {
+                ...subItem,
+                checked: !subItem?.checked,
+              };
+            } else {
+              return {
+                ...subItem,
+              };
+            }
+          }),
+        };
+      } else {
+        return {...item};
+      }
+    });
+    this.setState({
+      category: mappedOut,
+    });
   };
 
   render() {
@@ -604,8 +675,91 @@ export default class CreateGoalScreen extends Component {
                             fontSize: 20,
                             fontWeight: 'bold',
                           }}>
-                          Categories
+                          Select Category
                         </Text>
+                        <FlatList
+                          data={this.state.category}
+                          renderItem={item => {
+                            return (
+                              <View
+                                style={{
+                                  minWidth: '100%',
+                                  paddingHorizontal: 20,
+                                }}
+                                key={item?.index}>
+                                <Text
+                                  style={{
+                                    fontWeight: 'bold',
+                                    fontSize: 16,
+                                    marginBottom: 10,
+                                  }}>
+                                  {item?.item?.heading}
+                                </Text>
+                                <FlatList
+                                  nestedScrollEnabled
+                                  data={item?.item?.data}
+                                  renderItem={items => {
+                                    return (
+                                      <View
+                                        style={{
+                                          flexDirection: 'row',
+                                          justifyContent: 'space-between',
+                                          minWidth: '100%',
+                                          alignItems: 'center',
+                                          marginBottom: 5,
+                                        }}>
+                                        <View
+                                          style={{
+                                            flexDirection: 'row',
+                                            justifyContent: 'flex-start',
+                                            alignItems: 'center',
+                                          }}>
+                                          <Image
+                                            source={items?.item?.image}
+                                            style={{marginRight: 5}}
+                                          />
+                                          <Text>{items?.item?.name}</Text>
+                                        </View>
+                                        <TouchableOpacity
+                                          onPress={() =>
+                                            this.onClicked(
+                                              item?.index,
+                                              items?.index,
+                                            )
+                                          }>
+                                          <Image
+                                            source={
+                                              items.item?.checked
+                                                ? require('../../commons/images/selectedTick.png')
+                                                : require('../../commons/images/unSelectedTick.png')
+                                            }
+                                          />
+                                        </TouchableOpacity>
+                                      </View>
+                                    );
+                                  }}
+                                />
+                              </View>
+                            );
+                          }}
+                        />
+                        <View style={{paddingHorizontal: 20, width: '100%'}}>
+                          <TouchableOpacity
+                            activeOpacity={0.5}
+                            onPress={this._modalVisble1}
+                            style={{
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              borderRadius: 15,
+                              height: 55,
+                              backgroundColor: '#648CFF',
+                              marginTop: 20,
+                            }}>
+                            <Text style={{fontSize: 18, color: 'white'}}>
+                              Done
+                            </Text>
+                          </TouchableOpacity>
+                        </View>
                       </View>
                     </Modal>
                   </View>
@@ -682,8 +836,91 @@ export default class CreateGoalScreen extends Component {
                             fontSize: 20,
                             fontWeight: 'bold',
                           }}>
-                          Types
+                          Select Type
                         </Text>
+                        <FlatList
+                          data={this.state.category}
+                          renderItem={item => {
+                            return (
+                              <View
+                                style={{
+                                  minWidth: '100%',
+                                  paddingHorizontal: 20,
+                                }}
+                                key={item?.index}>
+                                <Text
+                                  style={{
+                                    fontWeight: 'bold',
+                                    fontSize: 16,
+                                    marginBottom: 10,
+                                  }}>
+                                  {item?.item?.heading}
+                                </Text>
+                                <FlatList
+                                  nestedScrollEnabled
+                                  data={item?.item?.data}
+                                  renderItem={items => {
+                                    return (
+                                      <View
+                                        style={{
+                                          flexDirection: 'row',
+                                          justifyContent: 'space-between',
+                                          minWidth: '100%',
+                                          alignItems: 'center',
+                                          marginBottom: 5,
+                                        }}>
+                                        <View
+                                          style={{
+                                            flexDirection: 'row',
+                                            justifyContent: 'flex-start',
+                                            alignItems: 'center',
+                                          }}>
+                                          <Image
+                                            source={items?.item?.image}
+                                            style={{marginRight: 5}}
+                                          />
+                                          <Text>{items?.item?.name}</Text>
+                                        </View>
+                                        <TouchableOpacity
+                                          onPress={() =>
+                                            this.onClicked(
+                                              item?.index,
+                                              items?.index,
+                                            )
+                                          }>
+                                          <Image
+                                            source={
+                                              items.item?.checked
+                                                ? require('../../commons/images/selectedTick.png')
+                                                : require('../../commons/images/unSelectedTick.png')
+                                            }
+                                          />
+                                        </TouchableOpacity>
+                                      </View>
+                                    );
+                                  }}
+                                />
+                              </View>
+                            );
+                          }}
+                        />
+                        <View style={{paddingHorizontal: 20, width: '100%'}}>
+                          <TouchableOpacity
+                            activeOpacity={0.5}
+                            onPress={this._modalVisble1}
+                            style={{
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              borderRadius: 15,
+                              height: 55,
+                              backgroundColor: '#648CFF',
+                              marginTop: 20,
+                            }}>
+                            <Text style={{fontSize: 18, color: 'white'}}>
+                              Done
+                            </Text>
+                          </TouchableOpacity>
+                        </View>
                       </View>
                     </Modal>
                   </View>
