@@ -21,7 +21,7 @@ export default class PomodoroMeter extends Component {
   state = {
     play: false,
     count: 0,
-    timer: 62,
+    timer: 1500,
     modal: true,
     key: 0,
 
@@ -112,8 +112,14 @@ export default class PomodoroMeter extends Component {
                   ['#d3d3d3', 0.2],
                 ]}>
                 {({remainingTime, animatedColor}) => {
-                  const minutes = Math.floor(remainingTime / 60);
-                  const seconds = remainingTime % 60;
+                  const minutes =
+                    Math.floor(remainingTime / 60) < 10
+                      ? '0' + Math.floor(remainingTime / 60)
+                      : Math.floor(remainingTime / 60);
+                  const seconds =
+                    remainingTime % 60 < 10
+                      ? '0' + (remainingTime % 60)
+                      : remainingTime % 60;
                   return (
                     <View>
                       <Animated.Text

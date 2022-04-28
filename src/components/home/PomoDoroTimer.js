@@ -784,6 +784,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignSelf: 'center',
     marginTop: 20,
+    color: '#000000',
   },
   addPomo: {
     fontWeight: 'bold',
